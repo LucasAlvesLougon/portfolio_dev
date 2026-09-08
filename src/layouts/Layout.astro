@@ -1,0 +1,76 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '@/styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+}
+
+const {
+  title = 'Lucas Lougon — Engenheiro de Software Backend & Fullstack',
+  description = 'Portfólio minimalista e estudos de caso de engenharia de software de Lucas Mateus Alves Lougon. Especialista em arquiteturas escaláveis, FastAPI, Node.js, Python, TypeScript e PostgreSQL.',
+  ogImage = '/og-image.png',
+  canonicalUrl = Astro.url.href,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR" class="scroll-smooth dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImage} />
+
+    <!-- Inline Script to prevent Theme FOUC (Default: Dark) -->
+    <script is:inline>
+      function applyTheme() {
+        if (
+          localStorage.theme === 'light' ||
+          (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: light)').matches && localStorage.theme !== 'dark')
+        ) {
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+      }
+      applyTheme();
+      document.addEventListener('astro:after-swap', applyTheme);
+    </script>
+
+    <!-- Google Fonts: IBM Plex Sans, Space Grotesk & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0"
+      rel="stylesheet"
+    />
+
+    <ClientRouter />
+  </head>
+  <body class="bg-white dark:bg-mono-950 text-mono-900 dark:text-mono-50 font-sans antialiased min-h-screen flex flex-col">
+    <slot />
+  </body>
+</html>

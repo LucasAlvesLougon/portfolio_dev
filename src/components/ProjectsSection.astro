@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import { ProjectsFilter } from './ProjectsFilter';
+import type { ProjectItemData } from './ProjectsFilter';
+
+const projects = await getCollection('projects');
+
+// Strict status order: Concluído -> Em Desenvolvimento -> Planejamento
+const statusOrder: Record<string, number> = {
+  'concluido': 1,
+  'em-desenvolvimento': 2,
+  'planejamento': 3,
+};
+
+const sortedProjects = projects.sort((a, b) => {
+  const priorityA = statusOrder[a.data.status] || 99;
+  const priorityB = statusOrder[b.data.status] || 99;
+  if (priorityA !== priorityB) {
+    return priorityA - priorityB;
+  }
+  return (b.data.date || '').localeCompare(a.data.date || '');
+});
+
+const serializedProjects: ProjectItemData[] = sortedProjects.map((p) => ({
+  slug: p.id.replace(/\.md$/, ''),
+  title: p.data.title,
+  status: p.data.status,
+  date: p.data.date,
+  summary: p.data.summary,
+  technologies: p.data.technologies,
+  skills: p.data.skills,
+  metrics: p.data.metrics,
+  links: p.data.links,
+}));
+---
+
+<section class="w-full py-16 px-6 lg:px-12 border-b border-mono-200 dark:border-mono-800" id="projetos-destaque">
+  <div class="max-w-7xl mx-auto flex flex-col gap-10">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+      <div>
+        <span class="text-xs uppercase tracking-widest font-mono text-mono-500 font-semibold">
+          // Engenharia Aplicada
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold font-headline text-mono-900 dark:text-white uppercase mt-1">
+          Projetos & Estudos de Caso
+        </h2>
+      </div>
+      <p class="text-xs text-mono-500 font-mono">Clean Architecture • Concorrência • Resiliência</p>
+    </div>
+
+    <!-- Client-Side Filter Island -->
+    <ProjectsFilter client:load projects={serializedProjects} />
+  </div>
+</section>

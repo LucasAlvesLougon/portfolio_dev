@@ -1,0 +1,108 @@
+---
+---
+
+<section class="w-full py-14 lg:py-24 px-6 lg:px-12 border-b border-mono-200 dark:border-mono-800 fine-grid" id="hero">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <!-- Left Column: Manifesto & Details -->
+    <div class="lg:col-span-7 flex flex-col items-start gap-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-mono-100 dark:bg-mono-900 border border-mono-300 dark:border-mono-700 text-xs font-mono text-mono-800 dark:text-mono-200">
+        <span class="w-1.5 h-1.5 rounded-full bg-signal-live"></span>
+        <span>BACKEND SPECIALIST // PYTHON & REACT</span>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <span class="text-xs uppercase tracking-widest font-mono text-mono-500 font-semibold">
+          // Lucas Mateus Alves Lougon
+        </span>
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold font-headline tracking-tighter text-mono-900 dark:text-white leading-[1.08] uppercase">
+          Engenharia Backend & Arquitetura Desacoplada
+        </h1>
+        <p class="text-base sm:text-lg text-mono-600 dark:text-mono-400 max-w-2xl font-normal leading-relaxed mt-2">
+          Desenvolvimento de software focado em confiabilidade de execução, fluxos transacionais com checkpoint de falha, APIs REST/SOAP e comunicação em tempo real com Python (FastAPI), TypeScript (Node.js/React 19) e PostgreSQL.
+        </p>
+      </div>
+
+      <!-- CTAs -->
+      <div class="flex flex-wrap items-center gap-3 pt-2 w-full sm:w-auto">
+        <a
+          class="h-11 px-6 bg-mono-900 dark:bg-white hover:bg-mono-800 dark:hover:bg-mono-100 text-white dark:text-mono-950 font-mono text-xs font-bold uppercase flex items-center justify-center gap-2 transition-all shadow-sm"
+          href="#projetos-destaque"
+        >
+          <span>Ver Estudos de Caso</span>
+          <span>↓</span>
+        </a>
+        <button
+          onclick="window.dispatchEvent(new CustomEvent('open-resume-modal'))"
+          class="h-11 px-5 bg-white dark:bg-mono-900 hover:bg-mono-100 dark:hover:bg-mono-850 text-mono-900 dark:text-mono-100 font-mono text-xs font-semibold uppercase flex items-center justify-center gap-2 border border-mono-300 dark:border-mono-700 transition-all"
+        >
+          <span class="material-symbols-outlined text-base">description</span>
+          <span>Currículo (PDF)</span>
+        </button>
+        <a
+          class="h-11 px-4 text-mono-600 dark:text-mono-400 hover:text-mono-900 dark:hover:text-white font-mono text-xs font-semibold uppercase flex items-center justify-center gap-1 transition-colors"
+          href="#contato-rapido"
+        >
+          <span>Contato Direto →</span>
+        </a>
+      </div>
+
+      <!-- Strict Monochrome Stack Badges -->
+      <div class="flex items-center gap-1.5 text-xs font-mono text-mono-500 pt-4 flex-wrap">
+        <span class="uppercase tracking-wider text-[11px] text-mono-400 mr-1">// CORE:</span>
+        <span class="px-2 py-0.5 bg-mono-100 dark:bg-mono-900 border border-mono-300 dark:border-mono-800 text-mono-800 dark:text-mono-200">Python 3.11</span>
+        <span class="px-2 py-0.5 bg-mono-100 dark:bg-mono-900 border border-mono-300 dark:border-mono-800 text-mono-800 dark:text-mono-200">FastAPI</span>
+        <span class="px-2 py-0.5 bg-mono-100 dark:bg-mono-900 border border-mono-300 dark:border-mono-800 text-mono-800 dark:text-mono-200">TypeScript</span>
+        <span class="px-2 py-0.5 bg-mono-100 dark:bg-mono-900 border border-mono-300 dark:border-mono-800 text-mono-800 dark:text-mono-200">React 19</span>
+        <span class="px-2 py-0.5 bg-mono-100 dark:bg-mono-900 border border-mono-300 dark:border-mono-800 text-mono-800 dark:text-mono-200">PostgreSQL</span>
+        <span class="px-2 py-0.5 bg-mono-100 dark:bg-mono-900 border border-mono-300 dark:border-mono-800 text-mono-800 dark:text-mono-200">WebSockets</span>
+      </div>
+    </div>
+
+    <!-- Right Column: Monochrome Terminal Window -->
+    <div class="lg:col-span-5 flex flex-col w-full">
+      <div class="bg-mono-950 border border-mono-800 rounded-none shadow-2xl overflow-hidden text-mono-100 font-mono">
+        <!-- Terminal Header -->
+        <div class="bg-mono-900 px-4 py-3 flex items-center justify-between border-b border-mono-800">
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 bg-mono-700 inline-block"></span>
+            <span class="w-2.5 h-2.5 bg-mono-700 inline-block"></span>
+            <span class="w-2.5 h-2.5 bg-mono-700 inline-block"></span>
+            <span class="text-xs text-mono-400 ml-2 font-medium">clean_architecture_handler.py</span>
+          </div>
+          <div class="flex items-center gap-1.5 text-[11px] text-mono-400">
+            <span class="w-1.5 h-1.5 bg-signal-live"></span>
+            <span>IDEMPOTENT</span>
+          </div>
+        </div>
+
+        <!-- Terminal Code Body -->
+        <div class="p-5 text-xs leading-relaxed overflow-x-auto selection:bg-white selection:text-mono-950">
+          <p class="text-mono-500"># Roteador com Clean Architecture e Inversão de Dependência</p>
+          <p class="mt-1"><span class="text-mono-400">@router</span>.<span class="text-white">post</span>(<span class="text-mono-300">"/session/{`{room_id}`}/vote"</span>)</p>
+          <p><span class="text-mono-400">async def</span> <span class="text-white font-semibold">handle_vote</span>(</p>
+          <p class="pl-4 text-mono-300">room_id: <span class="text-mono-400">UUID</span>,</p>
+          <p class="pl-4 text-mono-300">payload: <span class="text-mono-400">VoteInputSchema</span>,</p>
+          <p class="pl-4 text-mono-300">svc: <span class="text-mono-400">MatchService</span> = <span class="text-mono-400">Depends</span>(get_match_svc),</p>
+          <p class="pl-4 text-mono-300">ws_hub: <span class="text-mono-400">WebSocketManager</span> = <span class="text-mono-400">Depends</span>()</p>
+          <p>):</p>
+          <p class="pl-4 text-mono-400">match = <span class="text-white">await</span> svc.evaluate_vote(room_id, payload)</p>
+          <p class="pl-4 text-mono-400"><span class="text-white">if</span> match.is_unanimous:</p>
+          <p class="pl-8 text-mono-200 bg-mono-900 px-1 py-0.5 border border-mono-800"><span class="text-white">await</span> ws_hub.broadcast_match(room_id, match)</p>
+          <p class="pl-4 text-mono-300"><span class="text-white">return</span> &#123;<span class="text-mono-400">"status"</span>: <span class="text-mono-400">"synced"</span>, <span class="text-mono-400">"latency_ms"</span>: 18.2&#125;</p>
+        </div>
+
+        <!-- Terminal Footer -->
+        <div class="bg-mono-900 px-5 py-2.5 flex items-center justify-between text-xs border-t border-mono-800">
+          <div class="flex items-center gap-3 text-mono-400">
+            <span class="text-white font-semibold">18.2ms p99</span>
+            <span>•</span>
+            <span>ACID Concurrency</span>
+          </div>
+          <div class="text-[11px] text-mono-400">
+            54/54 TESTES PASS
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

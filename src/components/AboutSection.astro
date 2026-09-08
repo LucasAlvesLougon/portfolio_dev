@@ -1,0 +1,119 @@
+---
+---
+
+<section class="w-full py-16 px-6 lg:px-12 border-b border-mono-200 dark:border-mono-800" id="sobre">
+  <div class="max-w-7xl mx-auto flex flex-col gap-12">
+    <!-- Section Title -->
+    <div>
+      <span class="text-xs uppercase tracking-widest font-mono text-mono-500 font-semibold">
+        // Visão & Postura de Engenharia
+      </span>
+      <h2 class="text-2xl sm:text-3xl font-bold font-headline text-mono-900 dark:text-white uppercase mt-1">
+        Princípios de Desenvolvimento
+      </h2>
+    </div>
+
+    <!-- 3 Engineering Principles Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-mono-50 dark:bg-mono-900 p-6 sm:p-8 border border-mono-200 dark:border-mono-800 flex flex-col gap-4">
+        <div class="w-8 h-8 bg-mono-900 dark:bg-white text-white dark:text-mono-950 font-mono text-xs font-bold flex items-center justify-center">
+          01
+        </div>
+        <h3 class="text-lg font-bold font-headline uppercase text-mono-900 dark:text-white">
+          Arquitetura Limpa & Desacoplada
+        </h3>
+        <p class="text-xs text-mono-600 dark:text-mono-300 leading-relaxed font-mono">
+          Separação estrita de responsabilidades (Routers, Services, Repositories). O código de negócio nunca deve depender de frameworks web ou implementações de banco de dados.
+        </p>
+      </div>
+
+      <div class="bg-mono-50 dark:bg-mono-900 p-6 sm:p-8 border border-mono-200 dark:border-mono-800 flex flex-col gap-4">
+        <div class="w-8 h-8 bg-mono-900 dark:bg-white text-white dark:text-mono-950 font-mono text-xs font-bold flex items-center justify-center">
+          02
+        </div>
+        <h3 class="text-lg font-bold font-headline uppercase text-mono-900 dark:text-white">
+          Rigor com Concorrência & Dados
+        </h3>
+        <p class="text-xs text-mono-600 dark:text-mono-300 leading-relaxed font-mono">
+          Tratamento determinístico de condições de corrida em conexões WebSocket e precisão monetária persistida em centavos para eliminar erros de ponto flutuante.
+        </p>
+      </div>
+
+      <div class="bg-mono-50 dark:bg-mono-900 p-6 sm:p-8 border border-mono-200 dark:border-mono-800 flex flex-col gap-4">
+        <div class="w-8 h-8 bg-mono-900 dark:bg-white text-white dark:text-mono-950 font-mono text-xs font-bold flex items-center justify-center">
+          03
+        </div>
+        <h3 class="text-lg font-bold font-headline uppercase text-mono-900 dark:text-white">
+          Testabilidade & Governança (ADRs)
+        </h3>
+        <p class="text-xs text-mono-600 dark:text-mono-300 leading-relaxed font-mono">
+          Baterias completas de testes unitários e de integração antes de qualquer deploy. Decisões arquiteturais registradas e justificadas em documentos formais.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Especialidades Técnicas Grid -->
+<section class="w-full bg-mono-50 dark:bg-mono-900 py-16 px-6 lg:px-12 border-b border-mono-200 dark:border-mono-800" id="especialidades">
+  <div class="max-w-7xl mx-auto flex flex-col gap-10">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+      <div>
+        <span class="text-xs uppercase tracking-widest font-mono text-mono-500 font-semibold">
+          // Domínio Tecnológico
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold font-headline text-mono-900 dark:text-white uppercase mt-1">
+          Especialidades Técnicas
+        </h2>
+      </div>
+      <p class="text-xs text-mono-500 font-mono">Stacks consolidadas em cenários de alta exigência</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Backend Especialidade -->
+      <div class="bg-white dark:bg-mono-950 p-6 border border-mono-200 dark:border-mono-800 flex flex-col gap-4">
+        <div class="flex items-center justify-between border-b border-mono-200 dark:border-mono-800 pb-3">
+          <span class="text-xs font-mono font-bold uppercase text-mono-900 dark:text-white">// BACKEND & APIs</span>
+          <span class="text-[11px] font-mono text-mono-500">CORE</span>
+        </div>
+        <ul class="space-y-2 text-xs font-mono text-mono-700 dark:text-mono-300">
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-mono-900 dark:bg-white"></span> Python 3.11 + FastAPI (Async IO)</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-mono-900 dark:bg-white"></span> Node.js + Express + TypeScript</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-mono-900 dark:bg-white"></span> WebSockets & Hubs em Tempo Real</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-mono-900 dark:bg-white"></span> Autenticação OAuth 2.0 & JWT</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-mono-900 dark:bg-white"></span> Testes Automatizados com Pytest</li>
+        </ul>
+      </div>
+
+      <!-- Dados & Infra Especialidade -->
+      <div class="bg-white dark:bg-mono-950 p-6 border border-mono-200 dark:border-mono-800 flex flex-col gap-4">
+        <div class="flex items-center justify-between border-b border-mono-200 dark:border-mono-800 pb-3">
+          <span class="text-xs font-mono font-bold uppercase text-mono-900 dark:text-white">// DADOS & PERSISTÊNCIA</span>
+          <span class="text-[11px] font-mono text-mono-500">RELATIONAL</span>
+        </div>
+        <ul class="space-y-2 text-xs font-mono text-mono-700 dark:text-mono-300">
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-mono-900 dark:bg-white"></span> PostgreSQL + Modelagem Relacional</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-mono-900 dark:bg-white"></span> SQLAlchemy 2.0 & Alembic Migrations</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-mono-900 dark:bg-white"></span> Transações ACID & Isolamento de Tenant</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-mono-900 dark:bg-white"></span> Cache em Memória & Otimização de Queries</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-mono-900 dark:bg-white"></span> Armazenamento com Precisão Inteira</li>
+        </ul>
+      </div>
+
+      <!-- Frontend Reativo Especialidade -->
+      <div class="bg-white dark:bg-mono-950 p-6 border border-mono-200 dark:border-mono-800 flex flex-col gap-4">
+        <div class="flex items-center justify-between border-b border-mono-200 dark:border-mono-800 pb-3">
+          <span class="text-xs font-mono font-bold uppercase text-mono-900 dark:text-white">// FRONTEND & INTERFACE</span>
+          <span class="text-[11px] font-mono text-mono-500">REACTIVE</span>
+        </div>
+        <ul class="space-y-2 text-xs font-mono text-mono-700 dark:text-mono-300">
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-mono-900 dark:bg-white"></span> React 19 + TypeScript + Vite</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-mono-900 dark:bg-white"></span> Astro (Ilhas & SSG com Zero-JS)</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-mono-900 dark:bg-white"></span> Progressive Web Apps (PWAs Offline)</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-mono-900 dark:bg-white"></span> Tailwind CSS & Design Systems Estritos</li>
+          <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-mono-900 dark:bg-white"></span> Testes Unitários de Interface com Vitest</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
