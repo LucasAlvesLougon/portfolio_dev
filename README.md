@@ -1,4 +1,4 @@
-# Lucas Lougon — Portfólio de Engenharia de Software
+# Portfólio de Engenharia de Software
 
 Portfólio minimalista, monocromático e de alta performance desenvolvido para apresentar estudos de caso de engenharia de software, arquitetura backend desacoplada, APIs escaláveis e sistemas em tempo real.
 
