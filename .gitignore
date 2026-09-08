@@ -2,6 +2,10 @@
 dist/
 .astro/
 .agents/
+AGENT.md
+context.md
+memory.md
+DESIGN.md
 
 # Dependencies
 node_modules/

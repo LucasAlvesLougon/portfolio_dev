@@ -29,6 +29,7 @@ Este documento é incremental e serve como diário de bordo para registrar o pro
 - [x] Linha do tempo de evolução populada dinamicamente a partir dos marcos
 - [x] Filtro dinâmico por status com contadores atualizados automaticamente
 - [x] Visualizador e download do currículo oficial (`curriculo.pdf`)
+- [x] Criação de `README.md` completo e profissional com documentação de arquitetura, execução e content workflow
 - [x] Build de produção 100% validado gerando páginas estáticas otimizadas
 
 ---
