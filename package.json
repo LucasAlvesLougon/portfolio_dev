@@ -8,6 +8,7 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "test:projects": "node scripts/verify-projects-render.mjs",
     "astro": "astro",
     "check": "astro check"
   },

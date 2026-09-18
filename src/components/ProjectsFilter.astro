@@ -1,0 +1,270 @@
+---
+interface ProjectItemData {
+  slug: string;
+  title: string;
+  status: 'concluido' | 'em-desenvolvimento' | 'planejamento';
+  date?: string;
+  summary: string;
+  technologies: string[];
+  skills: string[];
+  metrics?: {
+    architecture?: string;
+    tests?: string;
+    documentation?: string;
+  };
+  links?: {
+    demo?: string;
+    repository?: string;
+  };
+}
+
+interface Props {
+  projects: ProjectItemData[];
+}
+
+const { projects } = Astro.props;
+
+const statusLabels = {
+  concluido: 'CONCLUÍDO',
+  'em-desenvolvimento': 'EM DESENVOLVIMENTO',
+  planejamento: 'PLANEJAMENTO',
+} as const;
+
+const statusClasses = {
+  concluido: 'bg-mono-100 dark:bg-mono-900 text-mono-900 dark:text-white border-mono-300 dark:border-mono-700',
+  'em-desenvolvimento': 'bg-mono-100 dark:bg-mono-900 text-mono-900 dark:text-white border-mono-300 dark:border-mono-700',
+  planejamento: 'bg-mono-100 dark:bg-mono-900 text-mono-700 dark:text-mono-300 border-mono-300 dark:border-mono-700',
+} as const;
+
+const countLabel = (count: number) => (count < 10 ? `0${count}` : count);
+const countFor = (status: ProjectItemData['status']) => projects.filter((project) => project.status === status).length;
+
+const getProjectMetrics = (project: ProjectItemData) => {
+  if (project.status === 'concluido') {
+    return {
+      architecture: project.metrics?.architecture || 'Clean Arch / Layered',
+      tests: project.metrics?.tests || '54/54 PASS (100%)',
+      documentation: project.metrics?.documentation || 'ADRs & Swagger Prontos',
+    };
+  }
+
+  if (project.status === 'em-desenvolvimento') {
+    return {
+      architecture: project.metrics?.architecture || 'Modular (Node/TS)',
+      tests: project.metrics?.tests || 'Regras de Cálculo Ativas',
+      documentation: project.metrics?.documentation || 'Specs em Andamento',
+    };
+  }
+
+  return {
+    architecture: project.metrics?.architecture || 'Clean Arch (Draft)',
+    tests: project.metrics?.tests || 'Planejamento via TDD',
+    documentation: project.metrics?.documentation || 'Requisitos Definidos',
+  };
+};
+---
+
+<div class="flex flex-col gap-8" data-projects-filter>
+  <div class="flex flex-wrap items-center gap-2 font-mono text-xs" role="group" aria-label="Filtrar projetos por status">
+    <button
+      type="button"
+      data-project-filter="all"
+      aria-pressed="true"
+      class="px-3 py-1 font-semibold transition-all focus:outline-none bg-mono-900 dark:bg-white text-white dark:text-mono-950"
+    >
+      TODOS ({countLabel(projects.length)})
+    </button>
+    <button
+      type="button"
+      data-project-filter="concluido"
+      aria-pressed="false"
+      class="px-3 py-1 font-semibold transition-all focus:outline-none bg-mono-100 dark:bg-mono-900 text-mono-600 dark:text-mono-400 hover:text-mono-900 dark:hover:text-white border border-mono-200 dark:border-mono-800"
+    >
+      CONCLUÍDOS ({countLabel(countFor('concluido'))})
+    </button>
+    <button
+      type="button"
+      data-project-filter="em-desenvolvimento"
+      aria-pressed="false"
+      class="px-3 py-1 font-semibold transition-all focus:outline-none bg-mono-100 dark:bg-mono-900 text-mono-600 dark:text-mono-400 hover:text-mono-900 dark:hover:text-white border border-mono-200 dark:border-mono-800"
+    >
+      EM ANDAMENTO ({countLabel(countFor('em-desenvolvimento'))})
+    </button>
+    <button
+      type="button"
+      data-project-filter="planejamento"
+      aria-pressed="false"
+      class="px-3 py-1 font-semibold transition-all focus:outline-none bg-mono-100 dark:bg-mono-900 text-mono-600 dark:text-mono-400 hover:text-mono-900 dark:hover:text-white border border-mono-200 dark:border-mono-800"
+    >
+      PLANEJAMENTO ({countLabel(countFor('planejamento'))})
+    </button>
+  </div>
+
+  <div class="grid grid-cols-1 gap-6" data-projects-list>
+    {projects.map((project) => {
+      const metrics = getProjectMetrics(project);
+
+      return (
+        <article
+          class="bg-white dark:bg-mono-950 p-6 lg:p-8 border border-mono-200 dark:border-mono-800 transition-all hover:border-mono-400 dark:hover:border-mono-600"
+          data-project-card
+          data-project-status={project.status}
+          data-project-slug={project.slug}
+        >
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div class="lg:col-span-8 flex flex-col gap-4">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class={`px-2.5 py-0.5 border text-xs font-mono font-semibold ${statusClasses[project.status]}`}>
+                  {statusLabels[project.status]}
+                </span>
+                {project.date && (
+                  <span class="px-2 py-0.5 bg-mono-100 dark:bg-mono-900 border border-mono-200 dark:border-mono-800 text-mono-600 dark:text-mono-400 text-xs font-mono">
+                    {project.date}
+                  </span>
+                )}
+              </div>
+
+              <div>
+                <h3 class="text-xl lg:text-2xl font-bold font-headline uppercase text-mono-900 dark:text-white">
+                  <a href={`/projetos/${project.slug}`} class="hover:underline">
+                    {project.title}
+                  </a>
+                </h3>
+                <p class="text-sm text-mono-600 dark:text-mono-300 font-medium mt-1">{project.summary}</p>
+              </div>
+
+              <div class="p-3.5 bg-mono-50 dark:bg-mono-900 border border-mono-200 dark:border-mono-800 text-xs text-mono-700 dark:text-mono-300 leading-relaxed font-mono">
+                <span class="font-bold text-mono-900 dark:text-white">// DESTAQUES DE ENGENHARIA:</span>
+                <br />
+                Clean Architecture, concorrência determinística, testes automatizados e modelagem relacional.
+              </div>
+
+              <div class="flex flex-wrap items-center gap-1.5 pt-2">
+                <span class="text-xs font-mono text-mono-400 uppercase mr-1">Stack:</span>
+                {project.technologies.map((technology) => (
+                  <span class="px-2 py-0.5 bg-mono-100 dark:bg-mono-950 text-mono-800 dark:text-mono-300 text-xs font-mono border border-mono-200 dark:border-mono-800">
+                    [ {technology} ]
+                  </span>
+                ))}
+              </div>
+
+              {project.skills.length > 0 && (
+                <div class="flex flex-wrap items-center gap-1.5 pt-1">
+                  <span class="text-xs font-mono text-mono-400 uppercase mr-1">Competências:</span>
+                  {project.skills.slice(0, 4).map((skill) => (
+                    <span class="px-2 py-0.5 bg-white dark:bg-mono-900 text-mono-700 dark:text-mono-300 border border-mono-200 dark:border-mono-800 text-[11px] font-mono">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div class="lg:col-span-4 flex flex-col justify-between h-full bg-mono-50 dark:bg-mono-900 border border-mono-200 dark:border-mono-800 p-5 gap-6">
+              <div class="flex flex-col gap-3 font-mono">
+                <span class="text-xs uppercase text-mono-500 font-semibold">// Validação</span>
+                <div class="flex items-baseline justify-between border-b border-mono-200 dark:border-mono-800 pb-2">
+                  <span class="text-xs text-mono-500">Arquitetura</span>
+                  <span class="text-xs sm:text-sm font-bold text-mono-900 dark:text-white text-right">{metrics.architecture}</span>
+                </div>
+                <div class="flex items-baseline justify-between border-b border-mono-200 dark:border-mono-800 pb-2">
+                  <span class="text-xs text-mono-500">Testes</span>
+                  <span class="text-xs sm:text-sm font-bold text-mono-900 dark:text-white text-right">{metrics.tests}</span>
+                </div>
+                <div class="flex items-baseline justify-between">
+                  <span class="text-xs text-mono-500">Documentação</span>
+                  <span class="text-xs sm:text-sm font-bold text-mono-900 dark:text-white text-right">{metrics.documentation}</span>
+                </div>
+              </div>
+
+              <div class="flex flex-col gap-2 pt-2">
+                <a
+                  href={`/projetos/${project.slug}`}
+                  class="h-10 px-4 bg-mono-900 dark:bg-white hover:bg-mono-800 dark:hover:bg-mono-100 text-white dark:text-mono-950 font-bold text-xs font-mono uppercase flex items-center justify-center gap-2 transition-all shadow-sm focus:outline-none"
+                >
+                  <span>Estudo de Caso Completo</span>
+                  <span>→</span>
+                </a>
+
+                {project.links?.demo && (
+                  <a
+                    class="h-10 px-4 bg-white dark:bg-mono-950 hover:bg-mono-100 dark:hover:bg-mono-900 text-mono-900 dark:text-white font-medium text-xs font-mono flex items-center justify-center gap-1.5 border border-mono-300 dark:border-mono-700 transition-colors shadow-sm"
+                    href={project.links.demo}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <span class="material-symbols-outlined text-base">open_in_new</span>
+                    <span>Site ↗</span>
+                  </a>
+                )}
+
+                {project.links?.repository && (
+                  <a
+                    class="h-10 px-4 bg-white dark:bg-mono-950 hover:bg-mono-100 dark:hover:bg-mono-900 text-mono-900 dark:text-white font-medium text-xs font-mono flex items-center justify-center gap-1.5 border border-mono-300 dark:border-mono-700 transition-colors"
+                    href={project.links.repository}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                      />
+                    </svg>
+                    <span>Code Base ↗</span>
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        </article>
+      );
+    })}
+  </div>
+</div>
+
+<script>
+  const initializeProjectFilters = () => {
+    document.querySelectorAll<HTMLElement>('[data-projects-filter]').forEach((container) => {
+      if (container.dataset.initialized === 'true') return;
+      container.dataset.initialized = 'true';
+
+      const buttons = Array.from(container.querySelectorAll<HTMLButtonElement>('[data-project-filter]'));
+      const cards = Array.from(container.querySelectorAll<HTMLElement>('[data-project-card]'));
+
+      const applyFilter = (filter: string) => {
+        cards.forEach((card) => {
+          card.hidden = filter !== 'all' && card.dataset.projectStatus !== filter;
+        });
+
+        buttons.forEach((button) => {
+          const isActive = button.dataset.projectFilter === filter;
+          button.setAttribute('aria-pressed', String(isActive));
+          button.classList.toggle('bg-mono-900', isActive);
+          button.classList.toggle('dark:bg-white', isActive);
+          button.classList.toggle('text-white', isActive);
+          button.classList.toggle('dark:text-mono-950', isActive);
+          button.classList.toggle('bg-mono-100', !isActive);
+          button.classList.toggle('dark:bg-mono-900', !isActive);
+          button.classList.toggle('text-mono-600', !isActive);
+          button.classList.toggle('dark:text-mono-400', !isActive);
+          button.classList.toggle('hover:text-mono-900', !isActive);
+          button.classList.toggle('dark:hover:text-white', !isActive);
+          button.classList.toggle('border', !isActive);
+          button.classList.toggle('border-mono-200', !isActive);
+          button.classList.toggle('dark:border-mono-800', !isActive);
+        });
+      };
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => applyFilter(button.dataset.projectFilter || 'all'));
+      });
+
+      applyFilter('all');
+    });
+  };
+
+  initializeProjectFilters();
+  document.addEventListener('astro:page-load', initializeProjectFilters);
+</script>
