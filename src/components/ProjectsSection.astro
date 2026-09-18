@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import { ProjectsFilter } from './ProjectsFilter';
-import type { ProjectItemData } from './ProjectsFilter';
+import ProjectsFilter from './ProjectsFilter.astro';
 
 const projects = await getCollection('projects');
 
@@ -21,7 +20,7 @@ const sortedProjects = projects.sort((a, b) => {
   return (b.data.date || '').localeCompare(a.data.date || '');
 });
 
-const serializedProjects: ProjectItemData[] = sortedProjects.map((p) => ({
+const serializedProjects = sortedProjects.map((p) => ({
   slug: p.id.replace(/\.md$/, ''),
   title: p.data.title,
   status: p.data.status,
@@ -48,7 +47,7 @@ const serializedProjects: ProjectItemData[] = sortedProjects.map((p) => ({
       <p class="text-xs text-mono-500 font-mono">Clean Architecture • Concorrência • Resiliência</p>
     </div>
 
-    <!-- Client-Side Filter Island -->
-    <ProjectsFilter client:load projects={serializedProjects} />
+    <!-- Static project list with progressive client-side filtering. -->
+    <ProjectsFilter projects={serializedProjects} />
   </div>
 </section>
