@@ -5,25 +5,28 @@ import portrait from '@/assets/lucas-lougon.png';
 
 <section class="home-hero" id="hero" aria-labelledby="home-title">
   <div class="home-shell hero-inner">
-    <div class="hero-copy">
+    <a class="hero-email" href="mailto:lucas.mal2005@gmail.com">lucas.mal2005@gmail.com</a>
+    <div class="hero-composition">
       <h1 id="home-title"><span>Lucas</span><span>Lougon</span></h1>
+      <div class="portrait-stage">
+        <Image
+          src={portrait}
+          alt="Retrato de Lucas Lougon"
+          width={1000}
+          format="webp"
+          loading="eager"
+          fetchpriority="high"
+          class="hero-portrait-image"
+        />
+      </div>
+    </div>
+    <div class="hero-copy">
       <p class="hero-role">Engenharia de software <span aria-hidden="true">/</span> Backend e full stack</p>
       <p class="hero-lead">Projetos publicados e estudos de caso sobre regras de negócio, APIs e interfaces.</p>
       <div class="hero-actions">
-        <a class="pill-button pill-button-light" href="#projetos-destaque">Explorar projetos</a>
+        <a class="hero-primary-link" href="#projetos-destaque">Explorar projetos <span aria-hidden="true">↗</span></a>
         <button type="button" class="hero-secondary-link" onclick="window.dispatchEvent(new CustomEvent('open-resume-modal'))">Abrir currículo</button>
       </div>
-    </div>
-    <div class="portrait-stage">
-      <Image
-        src={portrait}
-        alt="Retrato de Lucas Lougon"
-        width={1000}
-        format="webp"
-        loading="eager"
-        fetchpriority="high"
-        class="hero-portrait-image"
-      />
     </div>
   </div>
 </section>
