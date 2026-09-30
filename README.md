@@ -1,6 +1,6 @@
 # Portfólio de Engenharia de Software
 
-Portfólio minimalista, monocromático e de alta performance desenvolvido para apresentar estudos de caso de engenharia de software, arquitetura backend desacoplada, APIs escaláveis e sistemas em tempo real.
+Portfólio editorial e de alta performance desenvolvido para apresentar estudos de caso de engenharia de software, decisões de arquitetura e projetos em produção.
 
 Construído com **Astro 5**, **React 19**, **TypeScript** e **Tailwind CSS**, utilizando uma arquitetura **Content-Driven** baseada em Markdown com validação estrita via **Zod**.
 
@@ -22,11 +22,11 @@ Construído com **Astro 5**, **React 19**, **TypeScript** e **Tailwind CSS**, ut
 - **Zero-JS Baseline por Padrão:** Páginas estáticas ultra-otimizadas com carregamento instantâneo e pontuação máxima no Lighthouse.
 - **Content Collections Tipadas:** Adicione novos projetos ou marcos de evolução apenas criando arquivos `.md` em `src/content/`.
 - **Rotas Híbridas & SEO Profundo:**
-  - `http://localhost:4321/`: Página principal completa com manifesto técnico, terminal REPL, métricas, projetos e contato.
+  - `http://localhost:4321/`: Página principal com o estudo de caso do MuPonto em destaque, diagrama de arquitetura, projetos e contato.
   - `http://localhost:4321/projetos/[slug]`: Páginas canônicas individuais para cada estudo de caso com metadados OpenGraph, breadcrumbs e diagramas de arquitetura.
 - **Alternador de Tema Minimalista:** Modo Escuro por padrão com alternância para Modo Claro, persistência em `localStorage` e script inline anti-FOUC.
 - **Filtro Reativo por Status:** Filtragem em tempo real (`TODOS`, `CONCLUÍDOS`, `EM ANDAMENTO`, `PLANEJAMENTO`) ordenados rigorosamente pelo ciclo de vida do projeto.
-- **Métricas de Validação:** Bloco lateral nos cards exibindo estado real de arquitetura, testes e documentação de cada sistema.
+- **Projetos com Contexto:** Lista filtrável que distingue projetos publicados, concluídos e em planejamento, com acesso aos estudos de caso e repositórios.
 - **Modal de Currículo:** Visualizador acessível e download em 1 clique do currículo oficial em PDF (`/curriculo.pdf`).
 - **Cópia de Email com Feedback:** Botão interativo para cópia rápida com feedback visual na área de transferência.
 
@@ -40,14 +40,13 @@ web_portfolio/
 │   └── curriculo.pdf                 # Arquivo PDF oficial para download
 ├── src/
 │   ├── components/
-│   │   ├── AboutSection.astro        # Princípios de engenharia e especialidades
+│   │   ├── AboutSection.astro        # Princípios de engenharia e tecnologias em uso
 │   │   ├── ContactSection.astro      # Seção de contato e garantias
 │   │   ├── CopyEmailButton.tsx       # Ilha React para cópia de email
 │   │   ├── Footer.astro              # Rodapé com links e créditos
 │   │   ├── Header.astro              # Barra de navegação e redes sociais
-│   │   ├── Hero.astro                # Manifesto técnico e terminal REPL
-│   │   ├── Metrics.astro             # 4 cards de rigor e métricas de produção
-│   │   ├── ProjectsFilter.tsx        # Ilha React para filtro de status e cards
+│   │   ├── Hero.astro                # Abertura e estudo de caso do MuPonto
+│   │   ├── ProjectsFilter.tsx        # Ilha React para filtro de status e lista de projetos
 │   │   ├── ProjectsSection.astro     # Seção de projetos (consulta collections)
 │   │   ├── ResumeModal.tsx           # Ilha React para modal de currículo
 │   │   ├── ThemeToggle.tsx           # Ilha React para alternador de tema

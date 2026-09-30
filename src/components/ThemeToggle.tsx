@@ -24,16 +24,16 @@ export const ThemeToggle: React.FC = () => {
 
   if (!mounted) {
     return (
-      <div className="w-8 h-8 bg-mono-100 dark:bg-mono-900 border border-mono-300 dark:border-mono-700" />
+      <div className="theme-toggle" aria-hidden="true" />
     );
   }
 
   return (
     <button
       onClick={toggleTheme}
-      className="flex items-center justify-center w-8 h-8 bg-mono-100 dark:bg-mono-900 text-mono-700 dark:text-mono-300 hover:bg-mono-200 dark:hover:bg-mono-800 border border-mono-300 dark:border-mono-700 transition-all focus:outline-none"
+      className="theme-toggle"
       title={isDark ? 'Alternar para Tema Claro' : 'Alternar para Tema Escuro'}
-      aria-label="Alternar Tema"
+      aria-label={isDark ? 'Alternar para tema claro' : 'Alternar para tema escuro'}
     >
       {isDark ? (
         // Minimalist Sun Icon (when in dark mode, click to switch to light)
