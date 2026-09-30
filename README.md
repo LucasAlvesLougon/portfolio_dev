@@ -10,10 +10,10 @@ Construído com **Astro 5**, **React 19**, **TypeScript** e **Tailwind CSS**, ut
 
 - **Framework:** [Astro 5](https://astro.build/) (Static Site Generation / Islands Architecture)
 - **Componentes Interativos:** [React 19](https://react.dev/) (`@astrojs/react`)
-- **Estilização:** [Tailwind CSS v3](https://tailwindcss.com/) e CSS com temas claro e escuro
+- **Estilização:** [Tailwind CSS v3](https://tailwindcss.com/) e CSS com identidade editorial escura
 - **Validação de Conteúdo:** [Zod](https://zod.dev/) via Astro Content Collections (`src/content.config.ts`)
 - **Tipagem:** TypeScript 5+
-- **Tipografia:** Space Grotesk, IBM Plex Sans & JetBrains Mono
+- **Tipografia:** Georgia nos títulos editoriais, Space Grotesk nos nomes de projetos, IBM Plex Sans na leitura e JetBrains Mono em código
 
 ---
 
@@ -24,7 +24,7 @@ Construído com **Astro 5**, **React 19**, **TypeScript** e **Tailwind CSS**, ut
 - **Rotas de projetos:**
   - `http://localhost:4321/`: Apresentação de Lucas com retrato fornecido por ele, MuPonto em destaque, projetos e contato.
   - `http://localhost:4321/projetos/[slug]`: Estudos de caso individuais com metadados OpenGraph e navegação por breadcrumbs.
-- **Alternador de Tema Minimalista:** Modo Escuro por padrão com alternância para Modo Claro, persistência em `localStorage` e script inline anti-FOUC.
+- **Tema escuro único:** Paleta editorial consistente na página inicial, estudos de caso e modal de currículo.
 - **Filtro de projetos:** Seleção por situação: todos, concluídos, em andamento e em planejamento.
 - **Projetos com Contexto:** Lista filtrável que distingue projetos publicados, concluídos e em planejamento, com acesso aos estudos de caso e repositórios.
 - **Modal de Currículo:** Resumo dos projetos com acesso ao PDF (`/curriculo.pdf`).
@@ -51,7 +51,6 @@ web_portfolio/
 │   │   ├── ProjectsFilter.tsx        # Ilha React para filtro de status e lista de projetos
 │   │   ├── ProjectsSection.astro     # Seção de projetos (consulta collections)
 │   │   ├── ResumeModal.tsx           # Ilha React para modal de currículo
-│   │   ├── ThemeToggle.tsx           # Ilha React para alternador de tema
 │   │   └── Timeline.astro            # Linha do tempo de evolução
 │   ├── content/
 │   │   ├── milestones/               # Marcos da linha do tempo (.md)
@@ -66,7 +65,7 @@ web_portfolio/
 │   └── styles/
 │       └── global.css                # Estilos globais, grid e tipografia
 ├── astro.config.mjs                  # Configuração do Astro (React + Tailwind)
-├── tailwind.config.mjs               # Design System monocromático e tokens
+├── tailwind.config.mjs               # Configuração utilitária do Tailwind
 ├── tsconfig.json                     # Configuração estrita do TypeScript
 └── package.json                      # Dependências e scripts
 ```
