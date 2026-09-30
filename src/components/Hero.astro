@@ -1,71 +1,60 @@
 <section class="home-hero" id="hero" aria-labelledby="home-title">
-  <div class="home-shell">
-    <div class="hero-intro">
-      <div>
-        <p class="hero-role">Engenharia de software, backend e full stack</p>
-        <h1 id="home-title">Lucas Lougon</h1>
-        <p class="hero-lead">Projetos em que regras de negócio, arquitetura e entrega em produção precisam fazer sentido juntas.</p>
-        <div class="hero-actions">
-          <a class="text-link text-link-primary" href="#caso-muponto">Conhecer um projeto</a>
-          <button type="button" class="text-link" onclick="window.dispatchEvent(new CustomEvent('open-resume-modal'))">Abrir currículo</button>
-        </div>
-      </div>
+  <div class="home-shell hero-inner">
+    <p class="hero-role">Lucas Lougon <span aria-hidden="true">/</span> Engenharia de software</p>
+    <h1 id="home-title">MuPonto</h1>
+    <p class="hero-lead">Registro de jornadas e intervalos, cálculo de saldo e histórico de ajustes em uma aplicação publicada.</p>
+    <div class="hero-actions">
+      <a class="pill-button pill-button-light" href="/projetos/gestao-de-ponto">Explorar o estudo de caso</a>
+      <a class="hero-secondary-link" href="https://muponto.com" target="_blank" rel="noreferrer">Abrir o produto <span aria-hidden="true">↗</span></a>
     </div>
 
-    <article class="featured-case" id="caso-muponto" aria-labelledby="muponto-title">
-      <div class="featured-heading">
-        <div>
-          <p class="case-status"><span aria-hidden="true"></span> Em produção</p>
-          <h2 id="muponto-title">MuPonto</h2>
-          <p class="featured-summary">Ponto eletrônico com cálculo de saldo e histórico auditável.</p>
-        </div>
-        <span class="featured-kind">Estudo de caso / 2026</span>
-      </div>
+    <figure class="system-stage" aria-labelledby="system-stage-title">
+      <figcaption id="system-stage-title">Da marcação ao histórico</figcaption>
+      <ol class="system-flow">
+        <li>
+          <span>Registro e consulta</span>
+          <strong>React + TypeScript</strong>
+          <p>Interface para a jornada</p>
+        </li>
+        <li>
+          <span>Regras de negócio</span>
+          <strong>Laravel</strong>
+          <p>Cálculo e auditoria</p>
+        </li>
+        <li>
+          <span>Persistência</span>
+          <strong>MySQL</strong>
+          <p>Registros e ajustes</p>
+        </li>
+      </ol>
+      <p class="stage-note">Diagrama da arquitetura descrita no estudo de caso. Não representa uma tela do produto.</p>
+    </figure>
+  </div>
+</section>
 
-      <div class="featured-body">
-        <dl class="case-notes">
-          <div>
-            <dt>O problema</dt>
-            <dd>Registrar jornadas e intervalos sem perder a clareza sobre saldos, ajustes e exceções trabalhistas.</dd>
-          </div>
-          <div>
-            <dt>A decisão</dt>
-            <dd>Separar a interface React da API Laravel e manter o cálculo e a trilha de auditoria nas regras do servidor.</dd>
-          </div>
-          <div>
-            <dt>A evidência</dt>
-            <dd>Aplicação publicada, código disponível e decisões descritas no estudo de caso.</dd>
-          </div>
-        </dl>
-
-        <figure class="architecture-figure" aria-labelledby="architecture-title">
-          <figcaption id="architecture-title">Como o MuPonto está organizado</figcaption>
-          <ol class="architecture-flow">
-            <li>
-              <span class="architecture-step">Interface</span>
-              <strong>React + TypeScript</strong>
-              <small>Registro e consulta da jornada</small>
-            </li>
-            <li>
-              <span class="architecture-step">API</span>
-              <strong>Laravel</strong>
-              <small>Cálculo de saldo e auditoria</small>
-            </li>
-            <li>
-              <span class="architecture-step">Dados</span>
-              <strong>MySQL</strong>
-              <small>Registros e histórico</small>
-            </li>
-          </ol>
-          <p>Fluxo baseado na arquitetura descrita no projeto.</p>
-        </figure>
+<section class="case-overview" id="caso-muponto" aria-labelledby="case-overview-title">
+  <div class="home-shell">
+    <div class="case-overview-intro">
+      <h2 id="case-overview-title">Tempo registrado.<br />Decisões rastreáveis.</h2>
+      <p>O MuPonto reúne registro de jornada, cálculo de saldo e um histórico consultável de correções.</p>
+    </div>
+    <dl class="case-notes">
+      <div>
+        <dt>Problema</dt>
+        <dd>Registrar jornadas e intervalos sem perder clareza sobre saldos, ajustes e exceções.</dd>
       </div>
-
-      <div class="featured-links">
-        <a class="text-link text-link-primary" href="/projetos/gestao-de-ponto">Ler o estudo de caso</a>
-        <a class="text-link" href="https://muponto.com" target="_blank" rel="noreferrer">Abrir o produto <span aria-hidden="true">↗</span></a>
-        <a class="text-link" href="https://github.com/LucasAlvesLougon/gestao_ponto_web" target="_blank" rel="noreferrer">Ver o código <span aria-hidden="true">↗</span></a>
+      <div>
+        <dt>Decisão</dt>
+        <dd>Separar a interface React da API Laravel e concentrar o cálculo e a trilha de auditoria no servidor.</dd>
       </div>
-    </article>
+      <div>
+        <dt>Evidência</dt>
+        <dd>O produto está publicado; os repositórios e as decisões técnicas podem ser examinados no estudo.</dd>
+      </div>
+    </dl>
+    <div class="case-links">
+      <a class="text-link" href="/projetos/gestao-de-ponto">Ler o estudo completo <span aria-hidden="true">↗</span></a>
+      <a class="text-link" href="https://github.com/LucasAlvesLougon/gestao_ponto_web" target="_blank" rel="noreferrer">Ver o repositório <span aria-hidden="true">↗</span></a>
+    </div>
   </div>
 </section>

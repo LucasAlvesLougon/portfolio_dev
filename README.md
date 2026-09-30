@@ -1,6 +1,6 @@
 # Portfólio de Engenharia de Software
 
-Portfólio editorial e de alta performance desenvolvido para apresentar estudos de caso de engenharia de software, decisões de arquitetura e projetos em produção.
+Portfólio de engenharia de software com o MuPonto em destaque, projetos filtráveis e estudos de caso individuais.
 
 Construído com **Astro 5**, **React 19**, **TypeScript** e **Tailwind CSS**, utilizando uma arquitetura **Content-Driven** baseada em Markdown com validação estrita via **Zod**.
 
@@ -10,7 +10,7 @@ Construído com **Astro 5**, **React 19**, **TypeScript** e **Tailwind CSS**, ut
 
 - **Framework:** [Astro 5](https://astro.build/) (Static Site Generation / Islands Architecture)
 - **Componentes Interativos:** [React 19](https://react.dev/) (`@astrojs/react`)
-- **Estilização:** [Tailwind CSS v3](https://tailwindcss.com/) com paleta monocromática estrita
+- **Estilização:** [Tailwind CSS v3](https://tailwindcss.com/) e CSS com temas claro e escuro
 - **Validação de Conteúdo:** [Zod](https://zod.dev/) via Astro Content Collections (`src/content.config.ts`)
 - **Tipagem:** TypeScript 5+
 - **Tipografia:** Space Grotesk, IBM Plex Sans & JetBrains Mono
@@ -19,15 +19,15 @@ Construído com **Astro 5**, **React 19**, **TypeScript** e **Tailwind CSS**, ut
 
 ## ⚡ Principais Funcionalidades
 
-- **Zero-JS Baseline por Padrão:** Páginas estáticas ultra-otimizadas com carregamento instantâneo e pontuação máxima no Lighthouse.
+- **Páginas estáticas:** O Astro gera a home e os estudos de caso no build; React é usado nos controles interativos.
 - **Content Collections Tipadas:** Adicione novos projetos ou marcos de evolução apenas criando arquivos `.md` em `src/content/`.
-- **Rotas Híbridas & SEO Profundo:**
-  - `http://localhost:4321/`: Página principal com o estudo de caso do MuPonto em destaque, diagrama de arquitetura, projetos e contato.
-  - `http://localhost:4321/projetos/[slug]`: Páginas canônicas individuais para cada estudo de caso com metadados OpenGraph, breadcrumbs e diagramas de arquitetura.
+- **Rotas de projetos:**
+  - `http://localhost:4321/`: Página principal com o MuPonto em destaque, diagrama de arquitetura, projetos e contato.
+  - `http://localhost:4321/projetos/[slug]`: Estudos de caso individuais com metadados OpenGraph e navegação por breadcrumbs.
 - **Alternador de Tema Minimalista:** Modo Escuro por padrão com alternância para Modo Claro, persistência em `localStorage` e script inline anti-FOUC.
-- **Filtro Reativo por Status:** Filtragem em tempo real (`TODOS`, `CONCLUÍDOS`, `EM ANDAMENTO`, `PLANEJAMENTO`) ordenados rigorosamente pelo ciclo de vida do projeto.
+- **Filtro de projetos:** Seleção por situação: todos, concluídos, em andamento e em planejamento.
 - **Projetos com Contexto:** Lista filtrável que distingue projetos publicados, concluídos e em planejamento, com acesso aos estudos de caso e repositórios.
-- **Modal de Currículo:** Visualizador acessível e download em 1 clique do currículo oficial em PDF (`/curriculo.pdf`).
+- **Modal de Currículo:** Resumo dos projetos com acesso ao PDF (`/curriculo.pdf`).
 - **Cópia de Email com Feedback:** Botão interativo para cópia rápida com feedback visual na área de transferência.
 
 ---
@@ -121,10 +121,6 @@ technologies:
 skills:
   - "Clean Architecture"
   - "Testes Automatizados"
-metrics:
-  architecture: "Clean Arch / Layered"
-  tests: "100% PASS"
-  documentation: "ADRs & Swagger"
 links:
   demo: "https://meu-projeto.vercel.app" # Opcional
   repository: "https://github.com/LucasAlvesLougon/meu-repositorio" # Opcional
@@ -137,7 +133,7 @@ Explicação do desafio enfrentado.
 Como o sistema foi projetado e construído.
 
 ## 3. Resultado
-Evidências comprovadas e métricas de qualidade.
+Links para a entrega e para as evidências disponíveis.
 ```
 
 O projeto será automaticamente adicionado à listagem da Home e receberá uma rota canônica exclusiva em `/projetos/nome-do-projeto`.
@@ -146,7 +142,7 @@ O projeto será automaticamente adicionado à listagem da Home e receberá uma r
 
 ## 🌐 Deploy na Vercel
 
-O projeto foi configurado com `output: 'static'` e está 100% preparado para deploy contínuo na [Vercel](https://vercel.com/):
+O projeto foi configurado com `output: 'static'` e pode ser publicado na [Vercel](https://vercel.com/):
 
 1. Conecte o repositório no dashboard da Vercel.
 2. Framework Preset: **Astro**.

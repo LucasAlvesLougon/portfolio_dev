@@ -10,8 +10,8 @@ interface Props {
 }
 
 const {
-  title = 'Lucas Lougon — Engenheiro de Software Backend & Fullstack',
-  description = 'Portfólio minimalista e estudos de caso de engenharia de software de Lucas Mateus Alves Lougon. Especialista em arquiteturas escaláveis, FastAPI, Node.js, Python, TypeScript e PostgreSQL.',
+  title = 'Lucas Lougon — Engenharia de software e estudos de caso',
+  description = 'Portfólio de Lucas Lougon com projetos publicados e estudos de caso sobre arquitetura, regras de negócio e desenvolvimento de software.',
   ogImage = '/og-image.png',
   canonicalUrl = Astro.url.href,
 } = Astro.props;
@@ -56,7 +56,7 @@ const {
       document.addEventListener('astro:after-swap', applyTheme);
     </script>
 
-    <!-- Google Fonts: IBM Plex Sans, Space Grotesk & JetBrains Mono -->
+    <!-- Display, leitura e código -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -70,7 +70,7 @@ const {
 
     <ClientRouter />
   </head>
-  <body class="bg-white dark:bg-mono-950 text-mono-900 dark:text-mono-50 font-sans antialiased min-h-screen flex flex-col">
+  <body class="min-h-screen flex flex-col">
     <slot />
   </body>
 </html>
