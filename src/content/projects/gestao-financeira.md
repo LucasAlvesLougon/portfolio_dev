@@ -3,7 +3,7 @@ title: "Gestão Financeira Pessoal"
 status: "planejamento"
 featured: true
 date: "2026-10"
-summary: "Ferramenta de consciência financeira rápida com visualização de receitas, despesas e gráficos por categoria."
+summary: "Projeto em planejamento para registrar receitas e despesas e consultar os lançamentos por categoria."
 technologies:
   - "TypeScript"
   - "React"
@@ -16,38 +16,34 @@ skills:
   - "Visualização de Dados (Charts)"
   - "Agrupamento & Filtros Dinâmicos"
   - "Segurança & Privacidade"
-metrics:
-  architecture: "Clean Arch (Draft)"
-  tests: "Planejamento via TDD"
-  documentation: "Requisitos Definidos"
 links:
   repository: "https://github.com/LucasAlvesLougon/gestao_financeira"
 ---
 
 ## 1. Problema
 
-Muitas pessoas começam a anotar seus gastos em planilhas ou apps complexos, mas desistem nos primeiros dias devido à fricção e lentidão para registrar despesas diárias simples (como um café ou almoço).
+Registrar pequenas despesas ao longo do dia pode exigir mais etapas do que o necessário. O projeto parte dessa fricção para organizar um fluxo de lançamento simples.
 
 ## 2. Público-Alvo
 
-Indivíduos que buscam clareza sobre onde o dinheiro está indo sem gastar mais do que alguns segundos por dia registrando seus hábitos de consumo.
+Pessoas que desejam registrar receitas e despesas e consultar seus lançamentos por categoria.
 
 ## 3. Solução
 
-Uma interface ultra otimizada para inserção rápida de transações (meta de registro em menos de 5 segundos), combinada a um dashboard visual que sintetiza saldo total, despesas por categoria e contas recorrentes em uma única visualização.
+A proposta reúne um formulário de lançamento e uma visão de receitas, despesas e categorias. Esta página descreve o escopo planejado; as funcionalidades ainda não são apresentadas como entrega concluída.
 
 ## 4. Funcionalidades Principais
 
-- **Lançamento Rápido:** Formulário minimalista de despesa/receita com categoria e carteira.
-- **Categorização Visual:** Categorias com tags visuais e cores para rápida identificação.
-- **Dashboard e Gráficos:** Gráficos interativos de distribuição de despesas e evolução mensal.
-- **Despesas Recorrentes:** Agendamento simplificado de custos fixos (aluguel, internet, assinaturas).
-- **Exportação:** Download do histórico completo em CSV.
+- **Lançamentos:** Formulário de receita ou despesa com categoria e carteira.
+- **Categorias:** Organização dos lançamentos para consulta.
+- **Visão mensal:** Resumo de saldo e despesas por categoria.
+- **Despesas recorrentes:** Registro de custos fixos.
+- **Exportação:** Histórico em CSV.
 
-## 5. Decisões Técnicas
+## 5. Decisões propostas
 
-- **Precisão Financeira em Centavos:** Todos os valores são persistidos como números inteiros (`INTEGER`) representando centavos, evitando erros clássicos de arredondamento de ponto flutuante (`float`).
-- **Segurança Rigorosa:** Hash de senhas, validações de entrada e isolamento estrito de dados financeiros entre usuários.
+- **Valores em centavos:** A persistência é planejada com inteiros para evitar arredondamentos de ponto flutuante em valores monetários.
+- **Dados por usuário:** O desenho prevê validação de entradas, proteção das credenciais e separação dos registros financeiros.
 
 ## 6. Próximos Passos
 
