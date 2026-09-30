@@ -204,37 +204,36 @@ a {
 }
 
 .hero-composition {
-  position: relative;
-  margin-top: clamp(3.5rem, 6vw, 5rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: clamp(2rem, 5vw, 5rem);
+  margin-top: clamp(3rem, 5vw, 4.5rem);
 }
 
 .home-hero h1 {
-  position: relative;
-  z-index: 2;
   color: var(--hero-ink);
   font-family: var(--editorial);
-  font-size: clamp(7rem, 16.3vw, 15.5rem);
+  font-size: clamp(6rem, 10vw, 10.5rem);
   font-weight: 400;
-  line-height: 0.78;
-  letter-spacing: -0.095em;
+  line-height: 0.84;
+  letter-spacing: -0.085em;
   text-transform: uppercase;
 }
 
 .home-hero h1 span {
   display: block;
+  white-space: nowrap;
 }
 
 .home-hero h1 span + span {
-  margin-top: clamp(11rem, 19vw, 17rem);
+  margin-top: 0.08em;
 }
 
 .portrait-stage {
-  position: absolute;
-  z-index: 1;
-  top: clamp(6.5rem, 10vw, 9rem);
-  right: 1.5%;
-  width: clamp(20rem, 39vw, 31rem);
-  height: clamp(26rem, 39vw, 32rem);
+  position: relative;
+  width: 100%;
+  aspect-ratio: 0.92;
   overflow: hidden;
   background: #d4d1ca;
 }
@@ -1238,22 +1237,23 @@ a {
   }
 }
 
-@media (max-width: 800px) {
-  .home-hero h1 {
-    font-size: clamp(7rem, 17vw, 9rem);
+@media (max-width: 900px) {
+  .hero-composition {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
-  .home-hero h1 span + span {
-    margin-top: clamp(16rem, 38vw, 20rem);
+  .home-hero h1 {
+    font-size: clamp(5.25rem, 13vw, 9rem);
   }
 
   .portrait-stage {
-    top: 7rem;
-    right: 0;
-    width: min(60%, 27rem);
-    height: clamp(22rem, 55vw, 28rem);
+    justify-self: end;
+    width: min(72%, 27rem);
   }
+}
 
+@media (max-width: 800px) {
   .hero-copy {
     max-width: 42rem;
     grid-template-columns: 1fr;
@@ -1301,24 +1301,16 @@ a {
   }
 
   .home-hero h1 {
-    font-size: min(20vw, 8rem);
-    line-height: 0.85;
+    font-size: clamp(3.5rem, 19vw, 7rem);
   }
 
   .hero-composition {
-    margin-top: 3.25rem;
-  }
-
-  .home-hero h1 span + span {
-    margin-top: clamp(21.25rem, 89vw, 29rem);
+    gap: 1.25rem;
+    margin-top: 3rem;
   }
 
   .portrait-stage {
-    top: 5.7rem;
-    right: 50%;
-    width: min(83%, 23rem);
-    height: clamp(19rem, 80vw, 26rem);
-    transform: translateX(50%);
+    width: min(86%, 22rem);
   }
 
   .hero-portrait-image {
@@ -1326,7 +1318,7 @@ a {
   }
 
   .hero-copy {
-    margin-top: 3rem;
+    margin-top: 2.5rem;
   }
 
   .featured-heading h2 {
