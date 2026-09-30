@@ -1,6 +1,6 @@
 # Portfólio de Engenharia de Software
 
-Portfólio de engenharia de software com o MuPonto em destaque, projetos filtráveis e estudos de caso individuais.
+Portfólio de engenharia de software com o MuPonto em destaque, projetos filtráveis e estudos de caso individuais, incluindo o MVP local GovIntel AI.
 
 Construído com **Astro 5**, **React 19**, **TypeScript** e **Tailwind CSS**, utilizando uma arquitetura **Content-Driven** baseada em Markdown com validação estrita via **Zod**.
 

@@ -77,6 +77,11 @@ export const ResumeModal: React.FC = () => {
               <p>Aplicação colaborativa com FastAPI, React, PostgreSQL e votação de filmes sincronizada por WebSockets.</p>
               <a href="/projetos/cine-random">Ler estudo de caso</a>
             </div>
+            <div>
+              <h4>GovIntel AI</h4>
+              <p>MVP local de análise de editais com processamento assíncrono, busca semântica e citações verificáveis.</p>
+              <a href="/projetos/govintel-ai">Ler estudo de caso</a>
+            </div>
           </div>
         </div>
 

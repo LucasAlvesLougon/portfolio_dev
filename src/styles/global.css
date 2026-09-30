@@ -1046,6 +1046,13 @@ a {
   border-top: 1px solid var(--line);
 }
 
+.markdown-rendered img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+}
+
 .project-end {
   padding-block: 2.5rem 4rem;
   border-top: 1px solid var(--line);
