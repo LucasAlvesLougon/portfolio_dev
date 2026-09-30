@@ -166,6 +166,23 @@ a {
   color: var(--ink);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-ready .reveal-target.is-revealed {
+    transition: opacity 620ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal-ready .reveal-target:not(.is-revealed) {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  .reveal-ready .reveal-target:focus-within {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .portfolio-home h1,
 .portfolio-home h2,
 .portfolio-home h3 {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 export interface ProjectItemData {
   slug: string;
@@ -34,10 +34,17 @@ const statusLabels: Record<ProjectItemData['status'], string> = {
 
 export const ProjectsFilter: React.FC<ProjectsFilterProps> = ({ projects }) => {
   const [filter, setFilter] = useState<Filter>('all');
+  const browserRef = useRef<HTMLDivElement>(null);
   const visibleProjects = filter === 'all' ? projects : projects.filter((project) => project.status === filter);
 
+  useEffect(() => {
+    const browser = browserRef.current;
+    browser?.setAttribute('data-reveal-ready', '');
+    browser?.dispatchEvent(new CustomEvent('portfolio:content-ready', { bubbles: true }));
+  }, [filter]);
+
   return (
-    <div className="projects-browser">
+    <div className="projects-browser" ref={browserRef}>
       <div className="project-filters" role="group" aria-label="Filtrar projetos por situação">
         {filterOptions.map((option) => {
           const count = option.value === 'all'
