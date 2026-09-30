@@ -1,6 +1,6 @@
 # Portfólio de Engenharia de Software
 
-Portfólio minimalista, monocromático e de alta performance desenvolvido para apresentar estudos de caso de engenharia de software, arquitetura backend desacoplada, APIs escaláveis e sistemas em tempo real.
+Portfólio de engenharia de software com o MuPonto em destaque, projetos filtráveis e estudos de caso individuais, incluindo o MVP local GovIntel AI.
 
 Construído com **Astro 5**, **React 19**, **TypeScript** e **Tailwind CSS**, utilizando uma arquitetura **Content-Driven** baseada em Markdown com validação estrita via **Zod**.
 
@@ -10,24 +10,24 @@ Construído com **Astro 5**, **React 19**, **TypeScript** e **Tailwind CSS**, ut
 
 - **Framework:** [Astro 5](https://astro.build/) (Static Site Generation / Islands Architecture)
 - **Componentes Interativos:** [React 19](https://react.dev/) (`@astrojs/react`)
-- **Estilização:** [Tailwind CSS v3](https://tailwindcss.com/) com paleta monocromática estrita
+- **Estilização:** [Tailwind CSS v3](https://tailwindcss.com/) e CSS com identidade editorial escura
 - **Validação de Conteúdo:** [Zod](https://zod.dev/) via Astro Content Collections (`src/content.config.ts`)
 - **Tipagem:** TypeScript 5+
-- **Tipografia:** Space Grotesk, IBM Plex Sans & JetBrains Mono
+- **Tipografia:** Georgia nos títulos editoriais, Space Grotesk nos nomes de projetos, IBM Plex Sans na leitura e JetBrains Mono em código
 
 ---
 
 ## ⚡ Principais Funcionalidades
 
-- **Zero-JS Baseline por Padrão:** Páginas estáticas ultra-otimizadas com carregamento instantâneo e pontuação máxima no Lighthouse.
+- **Páginas estáticas:** O Astro gera a home, a lista de projetos e os estudos de caso no build; React é usado no modal de currículo e no controle de cópia de e-mail.
 - **Content Collections Tipadas:** Adicione novos projetos ou marcos de evolução apenas criando arquivos `.md` em `src/content/`.
-- **Rotas Híbridas & SEO Profundo:**
-  - `http://localhost:4321/`: Página principal completa com manifesto técnico, terminal REPL, métricas, projetos e contato.
-  - `http://localhost:4321/projetos/[slug]`: Páginas canônicas individuais para cada estudo de caso com metadados OpenGraph, breadcrumbs e diagramas de arquitetura.
-- **Alternador de Tema Minimalista:** Modo Escuro por padrão com alternância para Modo Claro, persistência em `localStorage` e script inline anti-FOUC.
-- **Filtro Reativo por Status:** Filtragem em tempo real (`TODOS`, `CONCLUÍDOS`, `EM ANDAMENTO`, `PLANEJAMENTO`) ordenados rigorosamente pelo ciclo de vida do projeto.
-- **Métricas de Validação:** Bloco lateral nos cards exibindo estado real de arquitetura, testes e documentação de cada sistema.
-- **Modal de Currículo:** Visualizador acessível e download em 1 clique do currículo oficial em PDF (`/curriculo.pdf`).
+- **Rotas de projetos:**
+  - `http://localhost:4321/`: Apresentação de Lucas com retrato fornecido por ele, MuPonto em destaque, projetos e contato.
+  - `http://localhost:4321/projetos/[slug]`: Estudos de caso individuais com metadados OpenGraph e navegação por breadcrumbs.
+- **Tema escuro único:** Paleta editorial consistente na página inicial, estudos de caso e modal de currículo.
+- **Filtro de projetos:** Seleção por situação: todos, concluídos, em andamento e em planejamento.
+- **Projetos com Contexto:** Lista filtrável que distingue projetos publicados, concluídos e em planejamento, com acesso aos estudos de caso e repositórios.
+- **Modal de Currículo:** Resumo dos projetos com acesso ao PDF (`/curriculo.pdf`).
 - **Cópia de Email com Feedback:** Botão interativo para cópia rápida com feedback visual na área de transferência.
 
 ---
@@ -39,18 +39,18 @@ web_portfolio/
 ├── public/
 │   └── curriculo.pdf                 # Arquivo PDF oficial para download
 ├── src/
+│   ├── assets/
+│   │   └── lucas-lougon.png          # Retrato original; Astro gera WebP no build
 │   ├── components/
-│   │   ├── AboutSection.astro        # Princípios de engenharia e especialidades
+│   │   ├── AboutSection.astro        # Princípios de engenharia e tecnologias em uso
 │   │   ├── ContactSection.astro      # Seção de contato e garantias
 │   │   ├── CopyEmailButton.tsx       # Ilha React para cópia de email
 │   │   ├── Footer.astro              # Rodapé com links e créditos
 │   │   ├── Header.astro              # Barra de navegação e redes sociais
-│   │   ├── Hero.astro                # Manifesto técnico e terminal REPL
-│   │   ├── Metrics.astro             # 4 cards de rigor e métricas de produção
-│   │   ├── ProjectsFilter.tsx        # Ilha React para filtro de status e cards
+│   │   ├── Hero.astro                # Apresentação pessoal e MuPonto em destaque
+│   │   ├── ProjectsFilter.astro      # Lista estática com filtro progressivo de projetos
 │   │   ├── ProjectsSection.astro     # Seção de projetos (consulta collections)
 │   │   ├── ResumeModal.tsx           # Ilha React para modal de currículo
-│   │   ├── ThemeToggle.tsx           # Ilha React para alternador de tema
 │   │   └── Timeline.astro            # Linha do tempo de evolução
 │   ├── content/
 │   │   ├── milestones/               # Marcos da linha do tempo (.md)
@@ -65,7 +65,7 @@ web_portfolio/
 │   └── styles/
 │       └── global.css                # Estilos globais, grid e tipografia
 ├── astro.config.mjs                  # Configuração do Astro (React + Tailwind)
-├── tailwind.config.mjs               # Design System monocromático e tokens
+├── tailwind.config.mjs               # Configuração utilitária do Tailwind
 ├── tsconfig.json                     # Configuração estrita do TypeScript
 └── package.json                      # Dependências e scripts
 ```
@@ -122,10 +122,6 @@ technologies:
 skills:
   - "Clean Architecture"
   - "Testes Automatizados"
-metrics:
-  architecture: "Clean Arch / Layered"
-  tests: "100% PASS"
-  documentation: "ADRs & Swagger"
 links:
   demo: "https://meu-projeto.vercel.app" # Opcional
   repository: "https://github.com/LucasAlvesLougon/meu-repositorio" # Opcional
@@ -138,7 +134,7 @@ Explicação do desafio enfrentado.
 Como o sistema foi projetado e construído.
 
 ## 3. Resultado
-Evidências comprovadas e métricas de qualidade.
+Links para a entrega e para as evidências disponíveis.
 ```
 
 O projeto será automaticamente adicionado à listagem da Home e receberá uma rota canônica exclusiva em `/projetos/nome-do-projeto`.
@@ -147,7 +143,7 @@ O projeto será automaticamente adicionado à listagem da Home e receberá uma r
 
 ## 🌐 Deploy na Vercel
 
-O projeto foi configurado com `output: 'static'` e está 100% preparado para deploy contínuo na [Vercel](https://vercel.com/):
+O projeto foi configurado com `output: 'static'` e pode ser publicado na [Vercel](https://vercel.com/):
 
 1. Conecte o repositório no dashboard da Vercel.
 2. Framework Preset: **Astro**.

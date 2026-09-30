@@ -3,7 +3,7 @@ title: "Cine Random"
 status: "concluido"
 featured: true
 date: "2026-08"
-summary: "Plataforma colaborativa e PWA com sorteios dinâmicos, WebSockets em tempo real e votação estilo 'Match da Galera' para grupos de cinema."
+summary: "Aplicação colaborativa para sortear filmes e votar em grupo, com salas sincronizadas por WebSockets."
 technologies:
   - "Python 3.11"
   - "FastAPI"
@@ -20,10 +20,6 @@ skills:
   - "OAuth 2.0 (Google Identity)"
   - "Testes Automatizados (54+ Testes Unitários e Integração)"
   - "Integração com TMDB API"
-metrics:
-  architecture: "Clean Arch / Layered"
-  tests: "54/54 PASS (100%)"
-  documentation: "ADRs & Swagger Prontos"
 links:
   demo: "https://cinerandomseven.vercel.app"
   repository: "https://github.com/LucasAlvesLougon/cine_random"
@@ -31,19 +27,19 @@ links:
 
 ## 1. Problema
 
-Escolher um filme para assistir em grupo costuma gerar indecisão prolongada, listas espalhadas no WhatsApp e dificuldade para conciliar os gostos de múltiplos participantes em tempo real.
+Escolher um filme em grupo exige reunir opções e conciliar preferências. Quando cada pessoa usa uma lista diferente, a decisão perde contexto e fica difícil acompanhar os votos.
 
 ## 2. Público-Alvo
 
-Grupos de amigos, casais e entusiastas de cinema que desejam um modo interativo, gamificado e rápido de organizar listas, sortear e votar no próximo filme a ser assistido.
+Grupos que querem organizar opções de filmes, sortear uma escolha ou votar em uma sala compartilhada.
 
 ## 3. Solução
 
-O **Cine Random** foi desenvolvido como uma aplicação completa e instalável (PWA) composta por um backend robusto em **FastAPI** e frontend reativo em **React 19**. A plataforma combina:
+O **Cine Random** combina uma interface React com uma API FastAPI. A aplicação também pode ser instalada como PWA:
 
-- **Sorteador Inteligente:** Algoritmo ponderado por filtros (gênero, streaming, ano de lançamento, notas).
-- **Match da Galera em Tempo Real:** Votação estilo *Tinder* sincronizada via **WebSockets**, onde os participantes entram na mesma sala e deslizam filmes até encontrar um consenso unânime.
-- **Gerador de Convites:** Criação de cartões de convite com detalhes do filme e data da sessão.
+- **Sorteio com filtros:** Seleção de filmes por gênero, serviço de streaming, ano e nota.
+- **Votação em grupo:** Participantes entram na mesma sala; WebSockets sincronizam os votos.
+- **Convites:** Criação de cartões com filme e data da sessão.
 
 ## 4. Arquitetura e Decisões Técnicas
 
@@ -51,15 +47,14 @@ O **Cine Random** foi desenvolvido como uma aplicação completa e instalável (
 ┌────────────────────────────────────────────────────────┐
 │                   Frontend (React 19 + PWA)            │
 │  - Vite + CSS Modules + Framer Motion                  │
-│  - 31/31 Testes Automatizados com Vitest               │
+│  - Interface de sorteio e votação                      │
 └──────────────────────────┬─────────────────────────────┘
                            │ (HTTPS REST / WSS WebSockets)
 ┌──────────────────────────▼─────────────────────────────┐
 │                 Backend API (FastAPI + Python 3.11)    │
 │  - Clean Architecture (Routers → Services → Repos)     │
-│  - Gerenciador de WebSockets com reconexão resiliente  │
-│  - Cache em Memória & Rate Limiting                    │
-│  - 23/23 Testes com Pytest                             │
+│  - Gerenciador de salas por WebSockets                 │
+│  - Serviços, repositórios e acesso a dados             │
 └──────────────────────────┬─────────────────────────────┘
                            │ (SQLAlchemy 2.0)
 ┌──────────────────────────▼─────────────────────────────┐
@@ -67,17 +62,16 @@ O **Cine Random** foi desenvolvido como uma aplicação completa e instalável (
 └────────────────────────────────────────────────────────┘
 ```
 
-- **Clean Architecture & Inversão de Dependência:** Isolamento estrito entre controladores HTTP/WebSocket, regras de negócio e camada de acesso a dados.
-- **WebSockets Resilientes:** Suporte a reconexão automática e sincronização instantânea de estado de salas entre múltiplos clientes.
-- **PWA (Progressive Web App):** Instalável no celular e desktop com suporte a cache offline de assets.
-- **Documentação com ADRs:** Todas as decisões arquiteturais fundamentais foram registradas em documentos formais de decisão (Architecture Decision Records).
+- **Separação de responsabilidades:** Rotas HTTP e WebSocket, serviços e repositórios organizam a entrada de dados, as regras de votação e a persistência.
+- **Sincronização:** WebSockets atualizam o estado da sala para os participantes conectados.
+- **PWA:** A interface inclui suporte à instalação e cache de arquivos estáticos.
+- **Documentação:** O repositório inclui registros de decisões arquiteturais.
 
-## 5. Dificuldades Superadas & Aprendizados
+## 5. Desafios de implementação
 
-- **Sincronização Concorrente de Votos:** Garantir que votos simultâneos em salas WebSocket não causassem condições de corrida (*race conditions*) na validação de match unânime.
-- **Isolamento de Testes:** Criação de fixtures eficientes no Pytest com banco de dados isolado e mocks controlados para chamadas da API do TMDB e Google OAuth.
+- **Votos simultâneos:** A validação do consenso precisa considerar atualizações recebidas quase ao mesmo tempo na mesma sala.
+- **Isolamento de testes:** As suítes usam fixtures e mocks para exercitar a API sem depender das respostas externas do TMDB e do Google OAuth.
 
 ## 6. Resultado
 
-- Mais de 54 testes automatizados cobrindo fluxos críticos (Pytest + Vitest).
-- Sistema completo com suporte a PWA instalável, documentação Swagger interativa e arquitetura desacoplada pronta para escala.
+- A [aplicação publicada](https://cinerandomseven.vercel.app) permite testar o sorteio e a votação. O [repositório](https://github.com/LucasAlvesLougon/cine_random) reúne a implementação, os testes e a documentação da API.

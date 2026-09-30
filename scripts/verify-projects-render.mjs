@@ -12,7 +12,7 @@ const projectsSection = html.slice(sectionStart, sectionEnd);
 const expectedProjects = [
   'muponto — gestão de ponto eletrônico',
   'cine random',
-  'govintel ai — inteligência documental com rag',
+  'govintel ai — inteligência documental',
   'gestão financeira pessoal',
 ];
 const normalizedSection = projectsSection.toLowerCase();
