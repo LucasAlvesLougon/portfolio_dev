@@ -22,7 +22,7 @@ Construído com **Astro 5**, **React 19**, **TypeScript** e **Tailwind CSS**, ut
 - **Páginas estáticas:** O Astro gera a home e os estudos de caso no build; React é usado nos controles interativos.
 - **Content Collections Tipadas:** Adicione novos projetos ou marcos de evolução apenas criando arquivos `.md` em `src/content/`.
 - **Rotas de projetos:**
-  - `http://localhost:4321/`: Página principal com o MuPonto em destaque, diagrama de arquitetura, projetos e contato.
+  - `http://localhost:4321/`: Apresentação de Lucas com retrato fornecido por ele, MuPonto em destaque, projetos e contato.
   - `http://localhost:4321/projetos/[slug]`: Estudos de caso individuais com metadados OpenGraph e navegação por breadcrumbs.
 - **Alternador de Tema Minimalista:** Modo Escuro por padrão com alternância para Modo Claro, persistência em `localStorage` e script inline anti-FOUC.
 - **Filtro de projetos:** Seleção por situação: todos, concluídos, em andamento e em planejamento.
@@ -39,13 +39,15 @@ web_portfolio/
 ├── public/
 │   └── curriculo.pdf                 # Arquivo PDF oficial para download
 ├── src/
+│   ├── assets/
+│   │   └── lucas-lougon.png          # Retrato original; Astro gera WebP no build
 │   ├── components/
 │   │   ├── AboutSection.astro        # Princípios de engenharia e tecnologias em uso
 │   │   ├── ContactSection.astro      # Seção de contato e garantias
 │   │   ├── CopyEmailButton.tsx       # Ilha React para cópia de email
 │   │   ├── Footer.astro              # Rodapé com links e créditos
 │   │   ├── Header.astro              # Barra de navegação e redes sociais
-│   │   ├── Hero.astro                # Abertura e estudo de caso do MuPonto
+│   │   ├── Hero.astro                # Apresentação pessoal e MuPonto em destaque
 │   │   ├── ProjectsFilter.tsx        # Ilha React para filtro de status e lista de projetos
 │   │   ├── ProjectsSection.astro     # Seção de projetos (consulta collections)
 │   │   ├── ResumeModal.tsx           # Ilha React para modal de currículo

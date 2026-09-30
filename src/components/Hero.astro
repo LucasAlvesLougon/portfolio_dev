@@ -1,11 +1,41 @@
+---
+import { Image } from 'astro:assets';
+import portrait from '@/assets/lucas-lougon.png';
+---
+
 <section class="home-hero" id="hero" aria-labelledby="home-title">
   <div class="home-shell hero-inner">
-    <p class="hero-role">Lucas Lougon <span aria-hidden="true">/</span> Engenharia de software</p>
-    <h1 id="home-title">MuPonto</h1>
-    <p class="hero-lead">Registro de jornadas e intervalos, cálculo de saldo e histórico de ajustes em uma aplicação publicada.</p>
-    <div class="hero-actions">
-      <a class="pill-button pill-button-light" href="/projetos/gestao-de-ponto">Explorar o estudo de caso</a>
-      <a class="hero-secondary-link" href="https://muponto.com" target="_blank" rel="noreferrer">Abrir o produto <span aria-hidden="true">↗</span></a>
+    <div class="hero-copy">
+      <h1 id="home-title"><span>Lucas</span><span>Lougon</span></h1>
+      <p class="hero-role">Engenharia de software <span aria-hidden="true">/</span> Backend e full stack</p>
+      <p class="hero-lead">Projetos publicados e estudos de caso sobre regras de negócio, APIs e interfaces.</p>
+      <div class="hero-actions">
+        <a class="pill-button pill-button-light" href="#projetos-destaque">Explorar projetos</a>
+        <button type="button" class="hero-secondary-link" onclick="window.dispatchEvent(new CustomEvent('open-resume-modal'))">Abrir currículo</button>
+      </div>
+    </div>
+    <div class="portrait-stage">
+      <Image
+        src={portrait}
+        alt="Retrato de Lucas Lougon"
+        width={1000}
+        format="webp"
+        loading="eager"
+        fetchpriority="high"
+        class="hero-portrait-image"
+      />
+    </div>
+  </div>
+</section>
+
+<section class="case-overview" id="caso-muponto" aria-labelledby="muponto-title">
+  <div class="home-shell">
+    <div class="featured-heading">
+      <div>
+        <p class="case-status">Em produção</p>
+        <h2 id="muponto-title">MuPonto</h2>
+      </div>
+      <p class="featured-deck">Registro de jornadas e intervalos, cálculo de saldo e histórico de ajustes em uma aplicação publicada.</p>
     </div>
 
     <figure class="system-stage" aria-labelledby="system-stage-title">
@@ -29,15 +59,7 @@
       </ol>
       <p class="stage-note">Diagrama da arquitetura descrita no estudo de caso. Não representa uma tela do produto.</p>
     </figure>
-  </div>
-</section>
 
-<section class="case-overview" id="caso-muponto" aria-labelledby="case-overview-title">
-  <div class="home-shell">
-    <div class="case-overview-intro">
-      <h2 id="case-overview-title">Tempo registrado.<br />Decisões rastreáveis.</h2>
-      <p>O MuPonto reúne registro de jornada, cálculo de saldo e um histórico consultável de correções.</p>
-    </div>
     <dl class="case-notes">
       <div>
         <dt>Problema</dt>
@@ -54,6 +76,7 @@
     </dl>
     <div class="case-links">
       <a class="text-link" href="/projetos/gestao-de-ponto">Ler o estudo completo <span aria-hidden="true">↗</span></a>
+      <a class="text-link" href="https://muponto.com" target="_blank" rel="noreferrer">Abrir o produto <span aria-hidden="true">↗</span></a>
       <a class="text-link" href="https://github.com/LucasAlvesLougon/gestao_ponto_web" target="_blank" rel="noreferrer">Ver o repositório <span aria-hidden="true">↗</span></a>
     </div>
   </div>
