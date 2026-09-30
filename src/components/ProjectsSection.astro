@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import { ProjectsFilter } from './ProjectsFilter';
-import type { ProjectItemData } from './ProjectsFilter';
+import ProjectsFilter from './ProjectsFilter.astro';
 
 const projects = await getCollection('projects');
 const statusOrder: Record<string, number> = {
@@ -15,7 +14,7 @@ const sortedProjects = projects.sort((a, b) => {
   return byStatus || (b.data.date || '').localeCompare(a.data.date || '');
 });
 
-const serializedProjects: ProjectItemData[] = sortedProjects.map((project) => ({
+const serializedProjects = sortedProjects.map((project) => ({
   slug: project.id.replace(/\.md$/, ''),
   title: project.data.title,
   status: project.data.status,
@@ -32,6 +31,6 @@ const serializedProjects: ProjectItemData[] = sortedProjects.map((project) => ({
       <h2 id="projects-title">Projetos e estudos de caso</h2>
       <p>Do produto publicado às ideias ainda em planejamento.</p>
     </div>
-    <ProjectsFilter client:load projects={serializedProjects} />
+    <ProjectsFilter projects={serializedProjects} />
   </div>
 </section>

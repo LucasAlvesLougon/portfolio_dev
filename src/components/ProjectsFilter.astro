@@ -1,0 +1,117 @@
+---
+interface ProjectItemData {
+  slug: string;
+  title: string;
+  status: 'concluido' | 'em-desenvolvimento' | 'planejamento';
+  date?: string;
+  summary: string;
+  technologies: string[];
+  links?: {
+    demo?: string;
+    repository?: string;
+  };
+}
+
+interface Props {
+  projects: ProjectItemData[];
+}
+
+const { projects } = Astro.props;
+const filterOptions = [
+  { value: 'all', label: 'Todos' },
+  { value: 'concluido', label: 'Concluídos' },
+  { value: 'em-desenvolvimento', label: 'Em andamento' },
+  { value: 'planejamento', label: 'Planejamento' },
+] as const;
+const statusLabels = {
+  concluido: 'Concluído',
+  'em-desenvolvimento': 'Em desenvolvimento',
+  planejamento: 'Em planejamento',
+};
+---
+
+<div class="projects-browser" data-projects-filter>
+  <div class="project-filters" role="group" aria-label="Filtrar projetos por situação">
+    {filterOptions.map((option) => (
+      <button
+        type="button"
+        data-project-filter={option.value}
+        aria-pressed={option.value === 'all' ? 'true' : 'false'}
+      >
+        {option.label} <span>{option.value === 'all' ? projects.length : projects.filter((project) => project.status === option.value).length}</span>
+      </button>
+    ))}
+  </div>
+
+  <div class="project-list" data-projects-list aria-live="polite">
+    {projects.map((project) => {
+      const isMuPonto = project.slug === 'gestao-de-ponto';
+      return (
+        <article
+          class:list={['project-row', { 'project-row-featured': isMuPonto }]}
+          data-project-card
+          data-project-status={project.status}
+          data-project-slug={project.slug}
+        >
+          <div class="project-meta">
+            <span class={isMuPonto ? 'project-status-live' : undefined}>
+              {isMuPonto ? 'Em produção' : statusLabels[project.status]}
+            </span>
+            {project.date && <time datetime={project.date}>{project.date}</time>}
+          </div>
+          <div class="project-description">
+            <h3><a href={`/projetos/${project.slug}`}>{project.title}</a></h3>
+            <p>{project.summary}</p>
+            <p class="project-technology">{project.technologies.slice(0, 4).join(', ')}</p>
+          </div>
+          <div class="project-actions">
+            <a href={`/projetos/${project.slug}`}>Ler estudo de caso</a>
+            {project.links?.demo && (
+              <a href={project.links.demo} target="_blank" rel="noreferrer">
+                Abrir produto <span aria-hidden="true">↗</span>
+              </a>
+            )}
+            {project.links?.repository && (
+              <a href={project.links.repository} target="_blank" rel="noreferrer">
+                Repositório <span aria-hidden="true">↗</span>
+              </a>
+            )}
+          </div>
+        </article>
+      );
+    })}
+    <p class="project-empty" data-project-empty hidden>Ainda não há projetos nesta etapa. Escolha outro filtro para ver os trabalhos disponíveis.</p>
+  </div>
+</div>
+
+<script>
+  const initializeProjectFilters = () => {
+    document.querySelectorAll<HTMLElement>('[data-projects-filter]').forEach((container) => {
+      if (container.dataset.initialized === 'true') return;
+      container.dataset.initialized = 'true';
+
+      const buttons = Array.from(container.querySelectorAll<HTMLButtonElement>('[data-project-filter]'));
+      const cards = Array.from(container.querySelectorAll<HTMLElement>('[data-project-card]'));
+      const emptyMessage = container.querySelector<HTMLElement>('[data-project-empty]');
+
+      const applyFilter = (filter: string) => {
+        let visibleCount = 0;
+        cards.forEach((card) => {
+          card.hidden = filter !== 'all' && card.dataset.projectStatus !== filter;
+          if (!card.hidden) visibleCount += 1;
+        });
+        if (emptyMessage) emptyMessage.hidden = visibleCount !== 0;
+        buttons.forEach((button) => {
+          button.setAttribute('aria-pressed', String(button.dataset.projectFilter === filter));
+        });
+      };
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => applyFilter(button.dataset.projectFilter || 'all'));
+      });
+    });
+  };
+
+  initializeProjectFilters();
+  document.addEventListener('astro:page-load', initializeProjectFilters);
+</script>

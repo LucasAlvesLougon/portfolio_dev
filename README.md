@@ -19,7 +19,7 @@ Construído com **Astro 5**, **React 19**, **TypeScript** e **Tailwind CSS**, ut
 
 ## ⚡ Principais Funcionalidades
 
-- **Páginas estáticas:** O Astro gera a home e os estudos de caso no build; React é usado nos controles interativos.
+- **Páginas estáticas:** O Astro gera a home, a lista de projetos e os estudos de caso no build; React é usado no modal de currículo e no controle de cópia de e-mail.
 - **Content Collections Tipadas:** Adicione novos projetos ou marcos de evolução apenas criando arquivos `.md` em `src/content/`.
 - **Rotas de projetos:**
   - `http://localhost:4321/`: Apresentação de Lucas com retrato fornecido por ele, MuPonto em destaque, projetos e contato.
@@ -48,7 +48,7 @@ web_portfolio/
 │   │   ├── Footer.astro              # Rodapé com links e créditos
 │   │   ├── Header.astro              # Barra de navegação e redes sociais
 │   │   ├── Hero.astro                # Apresentação pessoal e MuPonto em destaque
-│   │   ├── ProjectsFilter.tsx        # Ilha React para filtro de status e lista de projetos
+│   │   ├── ProjectsFilter.astro      # Lista estática com filtro progressivo de projetos
 │   │   ├── ProjectsSection.astro     # Seção de projetos (consulta collections)
 │   │   ├── ResumeModal.tsx           # Ilha React para modal de currículo
 │   │   └── Timeline.astro            # Linha do tempo de evolução

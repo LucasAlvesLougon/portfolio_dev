@@ -646,6 +646,11 @@ a {
   border-bottom: 1px solid var(--line);
 }
 
+.project-row[hidden],
+.project-empty[hidden] {
+  display: none;
+}
+
 .project-meta,
 .project-actions {
   display: flex;
