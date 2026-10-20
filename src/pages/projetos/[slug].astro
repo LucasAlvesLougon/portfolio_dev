@@ -16,6 +16,7 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await render(project);
 const isMuPonto = project.id.replace(/\.md$/, '') === 'gestao-de-ponto';
+const projectTitle = isMuPonto ? 'MuPonto' : project.data.title;
 const statusLabel = project.data.status === 'completed'
   ? (isMuPonto ? 'In production' : 'Completed')
   : project.data.status === 'in-development'
@@ -34,6 +35,12 @@ const displayDate = project.data.date
 
   <main class="project-page">
     <section class="project-hero" aria-labelledby="project-title">
+      <div class="project-hero-marquee" aria-hidden="true">
+        <div class="project-hero-marquee-track">
+          <span>{projectTitle} &mdash;&nbsp;</span>
+          <span>{projectTitle} &mdash;&nbsp;</span>
+        </div>
+      </div>
       <div class="project-shell">
         <nav class="project-breadcrumb" aria-label="Breadcrumb">
           <a href="/">Home</a>
@@ -47,7 +54,7 @@ const displayDate = project.data.date
           <p class:list={['project-state', { 'project-state-live': isMuPonto }]}>
             {statusLabel}{displayDate && <><span aria-hidden="true"> · </span><time datetime={project.data.date}>{displayDate}</time></>}
           </p>
-          <h1 id="project-title">{isMuPonto ? 'MuPonto' : project.data.title}</h1>
+          <h1 id="project-title">{projectTitle}</h1>
           {isMuPonto && <p class="project-subtitle">Electronic time tracking</p>}
           <p class="project-deck">{project.data.summary}</p>
           <div class="project-hero-actions">
