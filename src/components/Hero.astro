@@ -1,33 +1,62 @@
 ---
 import { Image } from 'astro:assets';
 import portrait from '@/assets/lucas-lougon.png';
+import MobileMenu from './MobileMenu';
 ---
 
-<section class="home-hero" id="hero" aria-labelledby="home-title">
-  <div class="home-shell hero-inner">
-    <div class="hero-composition">
-      <h1 id="home-title"><span>Lucas</span><span>Lougon</span></h1>
-      <div class="portrait-stage">
-        <Image
-          src={portrait}
-          alt="Portrait of Lucas Lougon"
-          width={1000}
-          format="webp"
-          loading="eager"
-          fetchpriority="high"
-          class="hero-portrait-image"
-        />
-      </div>
-    </div>
-    <div class="hero-copy">
-      <p class="hero-role">Software engineering <span aria-hidden="true">/</span> Backend and full stack</p>
-      <p class="hero-lead">Published projects and case studies on business rules, APIs, and interfaces.</p>
-      <div class="hero-actions">
-        <a class="hero-primary-link" href="#featured-projects">Explore projects <span aria-hidden="true">↗</span></a>
-        <button type="button" class="hero-secondary-link" onclick="window.dispatchEvent(new CustomEvent('open-resume-modal'))">Open resume</button>
-      </div>
+<section class="editorial-hero" id="hero" aria-labelledby="home-title">
+  <Image src={portrait} alt="" width={1000} format="webp" loading="eager" fetchpriority="high" class="editorial-bg-image" />
+  <div class="editorial-bg-overlay" aria-hidden="true"></div>
+
+  <div class="editorial-marquee" aria-hidden="true">
+    <div class="editorial-marquee-track">
+      <span>Lucas &mdash; Lougon&nbsp;</span>
+      <span>Lucas &mdash; Lougon&nbsp;</span>
     </div>
   </div>
+
+  <header class="editorial-header">
+    <a class="editorial-brand" href="/#hero" aria-label="Lucas Lougon, return to home">Lucas</a>
+    <div class="editorial-header-cluster">
+      <span class="editorial-year">2026</span>
+      <nav aria-label="Site index">
+        <a href="#about">Story</a>
+        <a href="#featured-projects">Work</a>
+        <a href="#contact">Message</a>
+      </nav>
+      <nav aria-label="Social links">
+        <a href="https://www.linkedin.com/in/lucas-lougon" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="https://github.com/LucasAlvesLougon" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <h1 id="home-title" class="editorial-visually-hidden">Lucas Lougon - Software engineering portfolio</h1>
+
+  <Image
+    src={portrait}
+    alt="Portrait of Lucas Lougon"
+    width={1000}
+    format="webp"
+    loading="eager"
+    fetchpriority="high"
+    class="editorial-front-image"
+  />
+
+  <div class="editorial-rule" aria-hidden="true"></div>
+  <footer class="editorial-footer">
+    <div>
+      <p>Software Engineer</p>
+      <p>Backend &amp; Full Stack</p>
+      <p>APIs, automation, and product systems</p>
+    </div>
+    <div class="editorial-footer-right">
+      <p>Based in</p>
+      <p>Espírito Santo, Brazil</p>
+    </div>
+  </footer>
+
+  <MobileMenu client:load />
 </section>
 
 <section class="case-overview" id="caso-muponto" aria-labelledby="muponto-title">

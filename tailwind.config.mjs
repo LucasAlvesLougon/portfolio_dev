@@ -4,12 +4,15 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['IBM Plex Sans', 'sans-serif'],
+        hn: ['Helvetica Neue ME', 'Helvetica', 'Arial', 'sans-serif'],
+        sans: ['Helvetica Neue ME', 'Helvetica', 'Arial', 'sans-serif'],
+        serif: ['Helvetica Neue ME', 'Helvetica', 'Arial', 'sans-serif'],
         headline: ['Space Grotesk', 'sans-serif'],
         display: ['Space Grotesk', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       colors: {
+        cream: '#efeee9',
         mono: {
           50: '#fafafa',
           100: '#f4f4f5',
