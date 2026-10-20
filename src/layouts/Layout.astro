@@ -10,15 +10,15 @@ interface Props {
 }
 
 const {
-  title = 'Lucas Lougon — Engenharia de software e estudos de caso',
-  description = 'Portfólio de Lucas Lougon com projetos publicados e estudos de caso sobre arquitetura, regras de negócio e desenvolvimento de software.',
+  title = 'Lucas Lougon — Software engineering and case studies',
+  description = 'Lucas Lougon\'s portfolio of published projects and case studies on architecture, business rules, and software development.',
   ogImage = '/og-image.png',
   canonicalUrl = Astro.url.href,
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="pt-BR" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -41,7 +41,7 @@ const {
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={ogImage} />
 
-    <!-- Display, leitura e código -->
+    <!-- Display, reading, and code fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

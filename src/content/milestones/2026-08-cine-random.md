@@ -1,7 +1,7 @@
 ---
-title: "Lançamento do Cine Random — Plataforma Colaborativa & PWA"
+title: "Cine Random launch - Collaborative platform and PWA"
 date: "2026-08"
-category: "projeto"
-summary: "Aplicação com FastAPI, WebSockets, React PWA e PostgreSQL; testes de interface e backend descritos no estudo de caso."
+category: "project"
+summary: "Application with FastAPI, WebSockets, React PWA, and PostgreSQL; interface and backend tests described in the case study."
 ---
-Conclusão e documentação da plataforma Cine Random, incluindo arquitetura limpa em camadas, sincronização WebSocket e ADRs documentados.
+Completion and documentation of the Cine Random platform, including layered clean architecture, WebSocket synchronization, and documented ADRs.

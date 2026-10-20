@@ -2,7 +2,7 @@
 interface ProjectItemData {
   slug: string;
   title: string;
-  status: 'concluido' | 'em-desenvolvimento' | 'planejamento';
+  status: 'completed' | 'in-development' | 'planning';
   date?: string;
   summary: string;
   technologies: string[];
@@ -18,20 +18,20 @@ interface Props {
 
 const { projects } = Astro.props;
 const filterOptions = [
-  { value: 'all', label: 'Todos' },
-  { value: 'concluido', label: 'Concluídos' },
-  { value: 'em-desenvolvimento', label: 'Em andamento' },
-  { value: 'planejamento', label: 'Planejamento' },
+  { value: 'all', label: 'All' },
+  { value: 'completed', label: 'Completed' },
+  { value: 'in-development', label: 'In progress' },
+  { value: 'planning', label: 'Planning' },
 ] as const;
 const statusLabels = {
-  concluido: 'Concluído',
-  'em-desenvolvimento': 'Em desenvolvimento',
-  planejamento: 'Em planejamento',
+  completed: 'Completed',
+  'in-development': 'In development',
+  planning: 'In planning',
 };
 ---
 
 <div class="projects-browser" data-projects-filter>
-  <div class="project-filters" role="group" aria-label="Filtrar projetos por situação">
+  <div class="project-filters" role="group" aria-label="Filter projects by status">
     {filterOptions.map((option) => (
       <button
         type="button"
@@ -55,7 +55,7 @@ const statusLabels = {
         >
           <div class="project-meta">
             <span class={isMuPonto ? 'project-status-live' : undefined}>
-              {isMuPonto ? 'Em produção' : statusLabels[project.status]}
+              {isMuPonto ? 'In production' : statusLabels[project.status]}
             </span>
             {project.date && <time datetime={project.date}>{project.date}</time>}
           </div>
@@ -65,22 +65,22 @@ const statusLabels = {
             <p class="project-technology">{project.technologies.slice(0, 4).join(', ')}</p>
           </div>
           <div class="project-actions">
-            <a href={`/projetos/${project.slug}`}>Ler estudo de caso</a>
+            <a href={`/projetos/${project.slug}`}>Read case study</a>
             {project.links?.demo && (
               <a href={project.links.demo} target="_blank" rel="noreferrer">
-                Abrir produto <span aria-hidden="true">↗</span>
+                Open product <span aria-hidden="true">↗</span>
               </a>
             )}
             {project.links?.repository && (
               <a href={project.links.repository} target="_blank" rel="noreferrer">
-                Repositório <span aria-hidden="true">↗</span>
+                Repository <span aria-hidden="true">↗</span>
               </a>
             )}
           </div>
         </article>
       );
     })}
-    <p class="project-empty" data-project-empty hidden>Ainda não há projetos nesta etapa. Escolha outro filtro para ver os trabalhos disponíveis.</p>
+    <p class="project-empty" data-project-empty hidden>There are no projects in this stage yet. Choose another filter to see the available work.</p>
   </div>
 </div>
 

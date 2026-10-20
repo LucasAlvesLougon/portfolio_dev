@@ -4,9 +4,9 @@ import ProjectsFilter from './ProjectsFilter.astro';
 
 const projects = await getCollection('projects');
 const statusOrder: Record<string, number> = {
-  concluido: 1,
-  'em-desenvolvimento': 2,
-  planejamento: 3,
+  completed: 1,
+  'in-development': 2,
+  planning: 3,
 };
 
 const sortedProjects = projects.sort((a, b) => {
@@ -25,11 +25,11 @@ const serializedProjects = sortedProjects.map((project) => ({
 }));
 ---
 
-<section class="home-section" id="projetos-destaque" aria-labelledby="projects-title">
+<section class="home-section" id="featured-projects" aria-labelledby="projects-title">
   <div class="home-shell">
     <div class="section-heading section-heading-inline">
-      <h2 id="projects-title">Projetos e estudos de caso</h2>
-      <p>Do produto publicado às ideias ainda em planejamento.</p>
+      <h2 id="projects-title">Projects and case studies</h2>
+      <p>From published products to ideas still in planning.</p>
     </div>
     <ProjectsFilter projects={serializedProjects} />
   </div>

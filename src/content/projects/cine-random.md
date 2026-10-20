@@ -1,9 +1,9 @@
 ---
 title: "Cine Random"
-status: "concluido"
+status: "completed"
 featured: true
 date: "2026-08"
-summary: "Aplicação colaborativa para sortear filmes e votar em grupo, com salas sincronizadas por WebSockets."
+summary: "Collaborative application for drawing movies and voting as a group, with rooms synchronized through WebSockets."
 technologies:
   - "Python 3.11"
   - "FastAPI"
@@ -14,47 +14,47 @@ technologies:
   - "PWA"
   - "Pytest / Vitest"
 skills:
-  - "Arquitetura Desacoplada"
-  - "Comunicação em Tempo Real (WebSockets)"
+  - "Decoupled architecture"
+  - "Real-time communication (WebSockets)"
   - "Clean Architecture (Routers, Services, Repositories)"
   - "OAuth 2.0 (Google Identity)"
-  - "Testes Automatizados (54+ Testes Unitários e Integração)"
-  - "Integração com TMDB API"
+  - "Automated testing (54+ unit and integration tests)"
+  - "TMDB API integration"
 links:
   demo: "https://cinerandomseven.vercel.app"
   repository: "https://github.com/LucasAlvesLougon/cine_random"
 ---
 
-## 1. Problema
+## 1. Problem
 
-Escolher um filme em grupo exige reunir opções e conciliar preferências. Quando cada pessoa usa uma lista diferente, a decisão perde contexto e fica difícil acompanhar os votos.
+Choosing a movie as a group requires gathering options and reconciling preferences. When everyone uses a different list, the decision loses context and votes become difficult to follow.
 
-## 2. Público-Alvo
+## 2. Target audience
 
-Grupos que querem organizar opções de filmes, sortear uma escolha ou votar em uma sala compartilhada.
+Groups that want to organize movie options, draw a choice, or vote in a shared room.
 
-## 3. Solução
+## 3. Solution
 
-O **Cine Random** combina uma interface React com uma API FastAPI. A aplicação também pode ser instalada como PWA:
+**Cine Random** combines a React interface with a FastAPI. The application can also be installed as a PWA:
 
-- **Sorteio com filtros:** Seleção de filmes por gênero, serviço de streaming, ano e nota.
-- **Votação em grupo:** Participantes entram na mesma sala; WebSockets sincronizam os votos.
-- **Convites:** Criação de cartões com filme e data da sessão.
+- **Filtered draw:** Select movies by genre, streaming service, year, and rating.
+- **Group voting:** Participants join the same room; WebSockets synchronize votes.
+- **Invitations:** Create cards with the movie and session date.
 
-## 4. Arquitetura e Decisões Técnicas
+## 4. Architecture and technical decisions
 
 ```text
 ┌────────────────────────────────────────────────────────┐
 │                   Frontend (React 19 + PWA)            │
 │  - Vite + CSS Modules + Framer Motion                  │
-│  - Interface de sorteio e votação                      │
+│  - Drawing and voting interface                        │
 └──────────────────────────┬─────────────────────────────┘
                            │ (HTTPS REST / WSS WebSockets)
 ┌──────────────────────────▼─────────────────────────────┐
 │                 Backend API (FastAPI + Python 3.11)    │
 │  - Clean Architecture (Routers → Services → Repos)     │
-│  - Gerenciador de salas por WebSockets                 │
-│  - Serviços, repositórios e acesso a dados             │
+│  - WebSocket room manager                              │
+│  - Services, repositories, and data access              │
 └──────────────────────────┬─────────────────────────────┘
                            │ (SQLAlchemy 2.0)
 ┌──────────────────────────▼─────────────────────────────┐
@@ -62,16 +62,16 @@ O **Cine Random** combina uma interface React com uma API FastAPI. A aplicação
 └────────────────────────────────────────────────────────┘
 ```
 
-- **Separação de responsabilidades:** Rotas HTTP e WebSocket, serviços e repositórios organizam a entrada de dados, as regras de votação e a persistência.
-- **Sincronização:** WebSockets atualizam o estado da sala para os participantes conectados.
-- **PWA:** A interface inclui suporte à instalação e cache de arquivos estáticos.
-- **Documentação:** O repositório inclui registros de decisões arquiteturais.
+- **Separation of responsibilities:** HTTP and WebSocket routes, services, and repositories organize data input, voting rules, and persistence.
+- **Synchronization:** WebSockets update the room state for connected participants.
+- **PWA:** The interface supports installation and static-file caching.
+- **Documentation:** The repository includes architectural decision records.
 
-## 5. Desafios de implementação
+## 5. Implementation challenges
 
-- **Votos simultâneos:** A validação do consenso precisa considerar atualizações recebidas quase ao mesmo tempo na mesma sala.
-- **Isolamento de testes:** As suítes usam fixtures e mocks para exercitar a API sem depender das respostas externas do TMDB e do Google OAuth.
+- **Simultaneous votes:** Consensus validation must account for updates received almost simultaneously in the same room.
+- **Test isolation:** The suites use fixtures and mocks to exercise the API without depending on external TMDB and Google OAuth responses.
 
-## 6. Resultado
+## 6. Result
 
-- A [aplicação publicada](https://cinerandomseven.vercel.app) permite testar o sorteio e a votação. O [repositório](https://github.com/LucasAlvesLougon/cine_random) reúne a implementação, os testes e a documentação da API.
+- The [published application](https://cinerandomseven.vercel.app) lets users test drawing and voting. The [repository](https://github.com/LucasAlvesLougon/cine_random) contains the implementation, tests, and API documentation.

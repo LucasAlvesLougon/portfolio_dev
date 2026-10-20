@@ -1,7 +1,7 @@
 ---
-title: "Lançamento do MuPonto — Sistema de Ponto & Banco de Horas"
+title: "MuPonto launch - Time tracking and hour bank"
 date: "2026-09"
-category: "projeto"
-summary: "Aplicação em produção com interface React, API Laravel, histórico de ajustes e publicação via GitHub Actions."
+category: "project"
+summary: "Production application with a React interface, Laravel API, adjustment history, and deployment through GitHub Actions."
 ---
-Publicação do MuPonto (`muponto.com` e `api.muponto.com`), com pipeline de deploy e histórico de ajustes nos registros.
+MuPonto published at (`muponto.com` and `api.muponto.com`), with a deployment pipeline and an adjustment history for records.

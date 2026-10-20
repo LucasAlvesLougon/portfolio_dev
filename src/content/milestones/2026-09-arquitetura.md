@@ -1,7 +1,7 @@
 ---
-title: "Definição da Arquitetura e Ecossistema de Projetos"
+title: "Architecture and project ecosystem defined"
 date: "2026-09"
-category: "arquitetura"
-summary: "Estruturação dos padrões de governança, Git Flow básico e plano de 3 fases para o portfólio e produtos."
+category: "architecture"
+summary: "Definition of governance patterns, a basic Git Flow, and a three-phase plan for the portfolio and products."
 ---
-Estabelecimento das diretrizes em `AGENT.md`, `context.md` e `memory.md` para garantir consistência de engenharia em todo o ecossistema.
+Engineering guidelines established in `AGENT.md`, `context.md`, and `memory.md` to ensure consistency across the ecosystem.

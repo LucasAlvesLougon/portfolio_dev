@@ -1,9 +1,9 @@
 ---
-title: "GovIntel AI — Inteligência documental"
-status: "em-desenvolvimento"
+title: "GovIntel AI - Document intelligence"
+status: "in-development"
 featured: true
 date: "2026-09"
-summary: "MVP local para analisar editais: processamento assíncrono de PDFs, busca semântica e respostas com citações verificáveis."
+summary: "Local MVP for analyzing public tenders: asynchronous PDF processing, semantic search, and answers with verifiable citations."
 technologies:
   - "Python 3.12"
   - "Django 5.2 / DRF"
@@ -14,25 +14,25 @@ technologies:
   - "Redis"
   - "Docker Compose"
 skills:
-  - "Arquitetura multi-tenant"
-  - "Processamento assíncrono com outbox"
-  - "Busca semântica e RAG"
-  - "Citações verificáveis"
+  - "Multi-tenant architecture"
+  - "Asynchronous processing with an outbox"
+  - "Semantic search and RAG"
+  - "Verifiable citations"
 links:
   repository: "https://github.com/LucasAlvesLougon/gov_intel_ai"
 ---
 
-## O problema
+## The problem
 
-Editais públicos reúnem prazos, exigências e critérios em PDFs extensos. Encontrar uma informação é apenas parte do trabalho: quem usa a resposta também precisa conferir o documento, a página e o trecho que a sustentam.
+Public tenders bring deadlines, requirements, and criteria together in lengthy PDFs. Finding an answer is only part of the work: the person using it also needs to verify the document, page, and excerpt that support it.
 
-## O que o MVP faz
+## What the MVP does
 
-O GovIntel AI permite cadastrar uma empresa, enviar editais privados, acompanhar o processamento dos arquivos, pesquisar o conteúdo por significado e fazer perguntas sobre um documento. As respostas do chat são acompanhadas de citações vinculadas ao texto persistido. O fluxo é executado localmente com Docker Compose; o repositório documenta a configuração e os limites atuais.
+GovIntel AI lets users register a company, upload private tenders, track file processing, search content by meaning, and ask questions about a document. Chat answers include citations linked to persisted text. The workflow runs locally with Docker Compose; the repository documents its setup and current limitations.
 
-## A decisão de arquitetura
+## The architectural decision
 
-O upload não espera pela leitura e indexação do PDF. A API Django registra o edital e um evento de processamento na mesma transação. Um relay publica o evento no RabbitMQ, e um worker Celery extrai o texto por página, aplica OCR quando necessário, divide o conteúdo em trechos e gera embeddings locais. O PostgreSQL com pgvector mantém os vetores usados na busca; Redis apoia cache e limitação de requisições.
+The upload does not wait for the PDF to be read and indexed. The Django API records the tender and a processing event in the same transaction. A relay publishes the event to RabbitMQ, and a Celery worker extracts text by page, applies OCR when needed, splits the content into excerpts, and generates local embeddings. PostgreSQL with pgvector stores the vectors used for search; Redis supports caching and rate limiting.
 
 ```text
 Next.js → API Django → PostgreSQL + outbox
@@ -46,24 +46,24 @@ Next.js → API Django → PostgreSQL + outbox
                    pgvector → busca → chat
 ```
 
-A outbox evita publicar uma tarefa para um edital que não foi salvo. Identificadores estáveis e uma chave de idempotência tratam uploads repetidos e entregas duplicadas da fila.
+The outbox prevents publishing a task for a tender that was not saved. Stable identifiers and an idempotency key handle repeated uploads and duplicate queue deliveries.
 
-## Respostas que podem ser conferidas
+## Answers that can be verified
 
-O chat recebe apenas trechos recuperados para a consulta. Antes de entregar uma resposta, o backend valida as citações contra o documento, o trecho e a página persistidos, dentro do tenant do usuário. Quando a evidência é insuficiente ou o provedor não está disponível, o fluxo declara a limitação em vez de apresentar uma resposta sem base verificável.
+The chat receives only excerpts retrieved for the query. Before returning an answer, the backend validates citations against the persisted document, excerpt, and page within the user's tenant. When evidence is insufficient or the provider is unavailable, the workflow states the limitation instead of presenting an answer without verifiable support.
 
-O isolamento por empresa também é aplicado às consultas, ao cache, aos arquivos e às tarefas. Os PDFs permanecem fora da árvore pública da aplicação.
+Company isolation also applies to queries, cache, files, and tasks. PDFs remain outside the application's public tree.
 
-## Interface do protótipo
+## Prototype interface
 
-As imagens abaixo mostram a interface local. A tela de conversa está em estado vazio; ela apresenta a área reservada para as fontes, sem simular uma resposta gerada.
+The images below show the local interface. The conversation screen is empty; it shows the area reserved for sources without simulating a generated answer.
 
-![Tela de acesso do GovIntel AI no ambiente local](/projetos/govintel-ai/login.png)
+![GovIntel AI sign-in screen in the local environment](/projetos/govintel-ai/login.png)
 
-![Tela de conversa vazia do GovIntel AI, com painel de fontes](/projetos/govintel-ai/chat-empty.png)
+![GovIntel AI empty conversation screen with sources panel](/projetos/govintel-ai/chat-empty.png)
 
-## Evidências e estágio atual
+## Evidence and current stage
 
-O estudo de caso registrado em setembro de 2026 informa **167 testes de backend e 43 de frontend passando em 18/09/2026**. O fluxo de ponta a ponta foi exercitado com Playwright e um provedor de IA simulado para manter o teste determinístico. Essa validação não substitui um teste real de latência, custo e qualidade do provedor.
+The case study recorded in September 2026 reports **167 backend tests and 43 frontend tests passing on September 18, 2026**. The end-to-end flow was exercised with Playwright and a simulated AI provider to keep the test deterministic. This validation does not replace a real-world test of provider latency, cost, and quality.
 
-O projeto segue como MVP local. Entre os próximos passos documentados estão armazenamento privado adequado à hospedagem, operação periódica da outbox e revisão do fluxo autenticado em dispositivos móveis. A implementação e as instruções para executá-la estão no [repositório do GovIntel AI](https://github.com/LucasAlvesLougon/gov_intel_ai).
+The project remains a local MVP. Documented next steps include private storage suitable for hosting, periodic outbox operation, and a review of the authenticated flow on mobile devices. The implementation and setup instructions are in the [GovIntel AI repository](https://github.com/LucasAlvesLougon/gov_intel_ai).

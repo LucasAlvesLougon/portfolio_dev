@@ -5,11 +5,11 @@ const milestones = await getCollection('milestones');
 const sortedMilestones = milestones.sort((a, b) => (b.data.date || '').localeCompare(a.data.date || ''));
 ---
 
-<section class="home-section home-section-tonal" id="trajetoria" aria-labelledby="timeline-title">
+<section class="home-section home-section-tonal" id="trajectory" aria-labelledby="timeline-title">
   <div class="home-shell section-layout">
     <div class="section-heading">
-      <h2 id="timeline-title">Registro de evolução</h2>
-      <p>Entregas e decisões recentes, em ordem cronológica.</p>
+      <h2 id="timeline-title">Progress log</h2>
+      <p>Recent deliveries and decisions, in chronological order.</p>
     </div>
     <ol class="timeline-list">
       {sortedMilestones.map((milestone) => (

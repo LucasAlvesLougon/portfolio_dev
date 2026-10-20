@@ -1,9 +1,9 @@
 ---
-title: "MuPonto — Gestão de Ponto Eletrônico"
-status: "concluido"
+title: "MuPonto - Electronic Time Tracking"
+status: "completed"
 featured: true
 date: "2026-09"
-summary: "Aplicação web de controle de jornada com registro de entradas, intervalos e saídas, cálculo de saldo e histórico de ajustes."
+summary: "Web application for time tracking with clock-ins, breaks, and clock-outs, balance calculations, and an adjustment history."
 technologies:
   - "React 19"
   - "TypeScript"
@@ -15,64 +15,64 @@ technologies:
   - "GitHub Actions (CI/CD)"
   - "Vitest / PHPUnit"
 skills:
-  - "Arquitetura REST Desacoplada"
-  - "Autenticação Híbrida (Google OAuth & Sanctum)"
-  - "Regras de Negócio e Cálculos CLT"
-  - "Auditoria e Isolamento Multi-Tenant"
-  - "CI/CD & Deploy Automatizado"
-  - "Testes Automatizados (59 Testes)"
+  - "Decoupled REST architecture"
+  - "Hybrid authentication (Google OAuth and Sanctum)"
+  - "Business rules and labor-law calculations"
+  - "Auditing and multi-tenant isolation"
+  - "CI/CD and automated deployment"
+  - "Automated testing (59 tests)"
 links:
   demo: "https://muponto.com"
   repository: "https://github.com/LucasAlvesLougon/gestao_ponto_web"
 ---
 
-## 1. Problema
+## 1. Problem
 
-Profissionais autônomos, prestadores de serviços e equipes pequenas precisam registrar jornadas e intervalos. Para acompanhar o saldo de horas, também precisam entender quais marcações e ajustes foram considerados no cálculo.
+Freelancers, service providers, and small teams need to track work hours and breaks. To follow their hour balance, they also need to understand which time entries and adjustments were included in the calculation.
 
-## 2. Público-Alvo
+## 2. Target audience
 
-Profissionais autônomos, consultores e equipes pequenas que precisam consultar marcações, intervalos e saldos em um mesmo lugar.
+Freelancers, consultants, and small teams that need to review time entries, breaks, and balances in one place.
 
-## 3. Solução
+## 3. Solution
 
-O **MuPonto** é uma aplicação web publicada em [muponto.com](https://muponto.com). A interface e a API são desenvolvidas separadamente:
+**MuPonto** is a web application published at [muponto.com](https://muponto.com). The interface and API are developed separately:
 
-- **Registro de jornada:** Entradas, intervalos e saídas são associados a horários de marcação.
-- **Cálculo de saldo:** As regras no servidor consideram horas trabalhadas, débitos e tolerâncias configuradas.
-- **Histórico de ajustes:** Correções manuais exigem justificativa e preservam dados de autoria e horário da edição (`edited_at`, `edited_by`).
-- **Relatórios:** Exportação dos registros em CSV e PDF.
-- **Autenticação:** Acesso por Google OAuth ou e-mail e senha, com Laravel Sanctum na API.
+- **Time tracking:** Clock-ins, breaks, and clock-outs are associated with recorded timestamps.
+- **Balance calculations:** Server-side rules account for worked hours, deficits, and configured tolerances.
+- **Adjustment history:** Manual corrections require a reason and preserve authorship and edit-time data (`edited_at`, `edited_by`).
+- **Reports:** Export of records as CSV and PDF.
+- **Authentication:** Access through Google OAuth or email and password, with Laravel Sanctum in the API.
 
-## 4. Arquitetura e Decisões Técnicas
+## 4. Architecture and technical decisions
 
-| Camada | Tecnologias | Responsabilidade |
+| Layer | Technologies | Responsibility |
 | :--- | :--- | :--- |
-| Interface | React, TypeScript, Vite | Registro, consulta e apresentação do saldo |
-| API | Laravel, PHP, Sanctum | Autenticação, cálculo e histórico de ajustes |
-| Dados | MySQL, Eloquent | Persistência de jornadas e usuários |
-| Entrega | GitHub Actions | Execução das suítes e publicação |
+| Interface | React, TypeScript, Vite | Tracking, review, and balance presentation |
+| API | Laravel, PHP, Sanctum | Authentication, calculations, and adjustment history |
+| Data | MySQL, Eloquent | Persistence for time records and users |
+| Delivery | GitHub Actions | Test suite execution and deployment |
 
 <br>
 
-- **Separação entre interface e API:** A aplicação e a API são hospedadas em `muponto.com` e `api.muponto.com`. O backend aplica escopos de usuário na consulta aos dados.
-- **Tratamento temporal:** O projeto descreve o armazenamento em UTC e a conversão para o fuso do usuário na interface.
-- **Estado da interface:** TanStack Query gerencia cache e invalidação das consultas após mudanças.
-- **Entrega:** Workflows do GitHub Actions executam testes e publicam as alterações no ambiente hospedado na Hostinger.
+- **Separation between interface and API:** The application and API are hosted at `muponto.com` and `api.muponto.com`. The backend applies user scopes when querying data.
+- **Time handling:** The project describes storing timestamps in UTC and converting them to the user's time zone in the interface.
+- **Interface state:** TanStack Query manages query caching and invalidation after changes.
+- **Delivery:** GitHub Actions workflows run tests and publish changes to the environment hosted on Hostinger.
 
-## 5. Repositórios e Links em Produção
+## 5. Repositories and production links
 
-- **Aplicação no Ar (Produção):** [https://muponto.com](https://muponto.com)
-- **API em Produção (Health Check):** [https://api.muponto.com/up](https://api.muponto.com/up)
-- **Repositório Frontend:** [LucasAlvesLougon/gestao_ponto_web](https://github.com/LucasAlvesLougon/gestao_ponto_web)
-- **Repositório Backend:** [LucasAlvesLougon/gestao_ponto_api](https://github.com/LucasAlvesLougon/gestao_ponto_api)
+- **Live application (production):** [https://muponto.com](https://muponto.com)
+- **Production API (health check):** [https://api.muponto.com/up](https://api.muponto.com/up)
+- **Frontend repository:** [LucasAlvesLougon/gestao_ponto_web](https://github.com/LucasAlvesLougon/gestao_ponto_web)
+- **Backend repository:** [LucasAlvesLougon/gestao_ponto_api](https://github.com/LucasAlvesLougon/gestao_ponto_api)
 
-## 6. Desafios de implementação
+## 6. Implementation challenges
 
-- **Jornadas com múltiplos intervalos:** O `PunchCalculationService` concentra as regras de cálculo para que as marcações sejam processadas no servidor.
-- **Deploy por FTP:** O workflow precisou adaptar os caminhos de publicação ao ambiente de hospedagem compartilhada.
-- **Dois modos de autenticação:** Os fluxos de Google OAuth e credenciais locais convergem para a sessão gerenciada pelo Laravel Sanctum.
+- **Shifts with multiple breaks:** `PunchCalculationService` centralizes calculation rules so that time entries are processed on the server.
+- **FTP deployment:** The workflow had to adapt deployment paths to the shared hosting environment.
+- **Two authentication modes:** Google OAuth and local credential flows converge on the session managed by Laravel Sanctum.
 
-## 7. Resultado
+## 7. Result
 
-- A aplicação está acessível em [muponto.com](https://muponto.com). Os repositórios de [interface](https://github.com/LucasAlvesLougon/gestao_ponto_web) e [API](https://github.com/LucasAlvesLougon/gestao_ponto_api) permitem examinar a implementação e as suítes de testes.
+- The application is available at [muponto.com](https://muponto.com). The [interface](https://github.com/LucasAlvesLougon/gestao_ponto_web) and [API](https://github.com/LucasAlvesLougon/gestao_ponto_api) repositories make the implementation and test suites available for review.

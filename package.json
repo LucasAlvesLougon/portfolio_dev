@@ -2,7 +2,7 @@
   "name": "web-portfolio",
   "type": "module",
   "version": "1.0.0",
-  "description": "Portfólio e estudos de caso de engenharia de software de Lucas Mateus Alves Lougon",
+  "description": "Software engineering portfolio and case studies by Lucas Mateus Alves Lougon",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

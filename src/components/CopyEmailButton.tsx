@@ -22,9 +22,9 @@ export const CopyEmailButton: React.FC<CopyEmailButtonProps> = ({
     <button
       onClick={handleCopy}
       className="contact-copy"
-      title="Copiar endereço de e-mail para a área de transferência"
+      title="Copy email address to clipboard"
     >
-      <span aria-live="polite">{copied ? 'E-mail copiado' : 'Copiar e-mail'}</span>
+      <span aria-live="polite">{copied ? 'Email copied' : 'Copy email'}</span>
     </button>
   );
 };

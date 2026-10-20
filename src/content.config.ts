@@ -5,7 +5,7 @@ const projects = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
   schema: z.object({
     title: z.string(),
-    status: z.enum(['concluido', 'em-desenvolvimento', 'planejamento']),
+    status: z.enum(['completed', 'in-development', 'planning']),
     featured: z.boolean().default(false),
     date: z.string().optional(),
     summary: z.string(),
@@ -32,7 +32,7 @@ const milestones = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.string(),
-    category: z.string().default('marco'),
+    category: z.string().default('milestone'),
     summary: z.string(),
   }),
 });

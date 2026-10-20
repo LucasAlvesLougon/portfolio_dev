@@ -1,9 +1,9 @@
 ---
-title: "Gestão Financeira Pessoal"
-status: "planejamento"
+title: "Personal Finance Management"
+status: "planning"
 featured: true
 date: "2026-10"
-summary: "Projeto em planejamento para registrar receitas e despesas e consultar os lançamentos por categoria."
+summary: "Project in planning to record income and expenses and review transactions by category."
 technologies:
   - "TypeScript"
   - "React"
@@ -12,39 +12,39 @@ technologies:
   - "Tailwind CSS"
 skills:
   - "UX Fast-Input"
-  - "Precisão Monetária"
-  - "Visualização de Dados (Charts)"
-  - "Agrupamento & Filtros Dinâmicos"
-  - "Segurança & Privacidade"
+  - "Monetary precision"
+  - "Data visualization (charts)"
+  - "Grouping and dynamic filters"
+  - "Security and privacy"
 links:
   repository: "https://github.com/LucasAlvesLougon/gestao_financeira"
 ---
 
-## 1. Problema
+## 1. Problem
 
-Registrar pequenas despesas ao longo do dia pode exigir mais etapas do que o necessário. O projeto parte dessa fricção para organizar um fluxo de lançamento simples.
+Recording small expenses throughout the day can require more steps than necessary. This project starts from that friction to organize a simple entry flow.
 
-## 2. Público-Alvo
+## 2. Target audience
 
-Pessoas que desejam registrar receitas e despesas e consultar seus lançamentos por categoria.
+People who want to record income and expenses and review their transactions by category.
 
-## 3. Solução
+## 3. Solution
 
-A proposta reúne um formulário de lançamento e uma visão de receitas, despesas e categorias. Esta página descreve o escopo planejado; as funcionalidades ainda não são apresentadas como entrega concluída.
+The proposal combines an entry form with views for income, expenses, and categories. This page describes the planned scope; the features are not presented as a completed delivery.
 
-## 4. Funcionalidades Principais
+## 4. Main features
 
-- **Lançamentos:** Formulário de receita ou despesa com categoria e carteira.
-- **Categorias:** Organização dos lançamentos para consulta.
-- **Visão mensal:** Resumo de saldo e despesas por categoria.
-- **Despesas recorrentes:** Registro de custos fixos.
-- **Exportação:** Histórico em CSV.
+- **Transactions:** Income or expense form with category and account.
+- **Categories:** Organize transactions for review.
+- **Monthly view:** Summary of balance and expenses by category.
+- **Recurring expenses:** Record fixed costs.
+- **Export:** CSV history.
 
-## 5. Decisões propostas
+## 5. Proposed decisions
 
-- **Valores em centavos:** A persistência é planejada com inteiros para evitar arredondamentos de ponto flutuante em valores monetários.
-- **Dados por usuário:** O desenho prevê validação de entradas, proteção das credenciais e separação dos registros financeiros.
+- **Values in cents:** Persistence is planned with integers to avoid floating-point rounding in monetary values.
+- **User-scoped data:** The design includes input validation, credential protection, and separation of financial records.
 
-## 6. Próximos Passos
+## 6. Next steps
 
-- Adicionar relatórios de comparação de orçamento previsto vs. realizado por categoria.
+- Add reports comparing planned and actual budgets by category.

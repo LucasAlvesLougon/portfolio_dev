@@ -16,18 +16,18 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await render(project);
 const isMuPonto = project.id.replace(/\.md$/, '') === 'gestao-de-ponto';
-const statusLabel = project.data.status === 'concluido'
-  ? (isMuPonto ? 'Em produção' : 'Concluído')
-  : project.data.status === 'em-desenvolvimento'
-    ? 'Em desenvolvimento'
-    : 'Em planejamento';
+const statusLabel = project.data.status === 'completed'
+  ? (isMuPonto ? 'In production' : 'Completed')
+  : project.data.status === 'in-development'
+    ? 'In development'
+    : 'In planning';
 const displayDate = project.data.date
-  ? new Intl.DateTimeFormat('pt-BR', { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${project.data.date}-01T00:00:00Z`))
+  ? new Intl.DateTimeFormat('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${project.data.date}-01T00:00:00Z`))
   : null;
 ---
 
 <Layout
-  title={`${project.data.title} — Estudo de caso | Lucas Lougon`}
+  title={`${project.data.title} — Case study | Lucas Lougon`}
   description={project.data.summary}
 >
   <Header />
@@ -35,10 +35,10 @@ const displayDate = project.data.date
   <main class="project-page">
     <section class="project-hero" aria-labelledby="project-title">
       <div class="project-shell">
-        <nav class="project-breadcrumb" aria-label="Localização">
-          <a href="/">Início</a>
+        <nav class="project-breadcrumb" aria-label="Breadcrumb">
+          <a href="/">Home</a>
           <span aria-hidden="true">/</span>
-          <a href="/#projetos-destaque">Projetos</a>
+          <a href="/#featured-projects">Projects</a>
           <span aria-hidden="true">/</span>
           <span aria-current="page">{isMuPonto ? 'MuPonto' : project.data.title}</span>
         </nav>
@@ -48,31 +48,31 @@ const displayDate = project.data.date
             {statusLabel}{displayDate && <><span aria-hidden="true"> · </span><time datetime={project.data.date}>{displayDate}</time></>}
           </p>
           <h1 id="project-title">{isMuPonto ? 'MuPonto' : project.data.title}</h1>
-          {isMuPonto && <p class="project-subtitle">Gestão de ponto eletrônico</p>}
+          {isMuPonto && <p class="project-subtitle">Electronic time tracking</p>}
           <p class="project-deck">{project.data.summary}</p>
           <div class="project-hero-actions">
             {project.data.links?.demo && (
-              <a class="pill-button pill-button-light" href={project.data.links.demo} target="_blank" rel="noopener noreferrer">Abrir o produto <span aria-hidden="true">↗</span></a>
+              <a class="pill-button pill-button-light" href={project.data.links.demo} target="_blank" rel="noopener noreferrer">Open the product <span aria-hidden="true">↗</span></a>
             )}
             {project.data.links?.repository && (
-              <a class="hero-secondary-link" href={project.data.links.repository} target="_blank" rel="noopener noreferrer">Ver repositório <span aria-hidden="true">↗</span></a>
+              <a class="hero-secondary-link" href={project.data.links.repository} target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a>
             )}
           </div>
         </div>
 
         <div class="project-hero-bottom">
-          <span>Estudo de caso de engenharia</span>
+          <span>Engineering case study</span>
           <span>{project.data.technologies.slice(0, 3).join(' / ')}</span>
         </div>
       </div>
     </section>
 
-    <section class="project-reading" aria-label="Conteúdo do estudo de caso">
+    <section class="project-reading" aria-label="Case study content">
       <div class="project-shell reading-layout">
-        <aside class="project-aside" aria-label="Informações do projeto">
-          <h2>Visão geral</h2>
+        <aside class="project-aside" aria-label="Project information">
+          <h2>Overview</h2>
           <p>{project.data.summary}</p>
-          <h2>Tecnologias</h2>
+          <h2>Technologies</h2>
           <ul>
             {project.data.technologies.map((technology) => <li>{technology}</li>)}
           </ul>
@@ -84,10 +84,10 @@ const displayDate = project.data.date
       </div>
     </section>
 
-    <nav class="project-end" aria-label="Navegação após o estudo de caso">
+    <nav class="project-end" aria-label="Navigation after the case study">
       <div class="project-shell project-end-inner">
-        <a href="/#projetos-destaque">Ver todos os projetos</a>
-        <a href="/#contato-rapido">Entrar em contato</a>
+        <a href="/#featured-projects">View all projects</a>
+        <a href="/#contact">Get in touch</a>
       </div>
     </nav>
   </main>

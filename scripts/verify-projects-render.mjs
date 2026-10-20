@@ -1,34 +1,34 @@
 import { readFile } from 'node:fs/promises';
 
 const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
-const sectionStart = html.indexOf('id="projetos-destaque"');
-const sectionEnd = html.indexOf('id="trajetoria"', sectionStart);
+const sectionStart = html.indexOf('id="featured-projects"');
+const sectionEnd = html.indexOf('id="trajectory"', sectionStart);
 
 if (sectionStart === -1 || sectionEnd === -1) {
-  throw new Error('A seção de projetos não foi encontrada no HTML gerado.');
+  throw new Error('The projects section was not found in the generated HTML.');
 }
 
 const projectsSection = html.slice(sectionStart, sectionEnd);
 const expectedProjects = [
-  'muponto — gestão de ponto eletrônico',
+  'muponto - electronic time tracking',
   'cine random',
-  'govintel ai — inteligência documental',
-  'gestão financeira pessoal',
+  'govintel ai - document intelligence',
+  'personal finance management',
 ];
 const normalizedSection = projectsSection.toLowerCase();
 
 if (projectsSection.includes('<astro-island')) {
-  throw new Error('Os projetos ainda dependem de uma ilha React para existir no HTML estático.');
+  throw new Error('The projects still depend on a React island to exist in the static HTML.');
 }
 
 if (!projectsSection.includes('data-projects-filter')) {
-  throw new Error('O contêiner estático de projetos não foi encontrado no HTML gerado.');
+  throw new Error('The static project container was not found in the generated HTML.');
 }
 
 for (const project of expectedProjects) {
   if (!normalizedSection.includes(project)) {
-    throw new Error(`Projeto ausente no HTML estático: ${project}`);
+    throw new Error(`Project missing from static HTML: ${project}`);
   }
 }
 
-console.log(`OK: ${expectedProjects.length} projetos renderizados no HTML estático.`);
+console.log(`OK: ${expectedProjects.length} projects rendered in static HTML.`);

@@ -1,161 +1,168 @@
-# Portfólio de Engenharia de Software
+# Software Engineering Portfolio
 
-Portfólio de engenharia de software com o MuPonto em destaque, projetos filtráveis e estudos de caso individuais, incluindo o MVP local GovIntel AI.
+Software engineering portfolio featuring MuPonto, filterable projects, and individual case studies, including the local GovIntel AI MVP.
 
-Construído com **Astro 5**, **React 19**, **TypeScript** e **Tailwind CSS**, utilizando uma arquitetura **Content-Driven** baseada em Markdown com validação estrita via **Zod**.
+Built with **Astro 5**, **React 19**, **TypeScript**, and **Tailwind CSS**, using a **content-driven** architecture based on Markdown with strict **Zod** validation.
 
 ---
 
-## 🛠️ Stack Tecnológica
+## 🛠️ Technology Stack
 
 - **Framework:** [Astro 5](https://astro.build/) (Static Site Generation / Islands Architecture)
-- **Componentes Interativos:** [React 19](https://react.dev/) (`@astrojs/react`)
-- **Estilização:** [Tailwind CSS v3](https://tailwindcss.com/) e CSS com identidade editorial escura
-- **Validação de Conteúdo:** [Zod](https://zod.dev/) via Astro Content Collections (`src/content.config.ts`)
-- **Tipagem:** TypeScript 5+
-- **Tipografia:** Georgia nos títulos editoriais, Space Grotesk nos nomes de projetos, IBM Plex Sans na leitura e JetBrains Mono em código
+- **Interactive components:** [React 19](https://react.dev/) (`@astrojs/react`)
+- **Styling:** [Tailwind CSS v3](https://tailwindcss.com/) and editorial dark-theme CSS
+- **Content validation:** **Zod** through Astro Content Collections (`src/content.config.ts`)
+- **Typing:** TypeScript 5+
+- **Typography:** Georgia for editorial headings, Space Grotesk for project names, IBM Plex Sans for reading, and JetBrains Mono for code
 
 ---
 
-## ⚡ Principais Funcionalidades
+## ⚡ Main Features
 
-- **Páginas estáticas:** O Astro gera a home, a lista de projetos e os estudos de caso no build; React é usado no modal de currículo e no controle de cópia de e-mail.
-- **Content Collections Tipadas:** Adicione novos projetos ou marcos de evolução apenas criando arquivos `.md` em `src/content/`.
-- **Rotas de projetos:**
-  - `http://localhost:4321/`: Apresentação de Lucas com retrato fornecido por ele, MuPonto em destaque, projetos e contato.
-  - `http://localhost:4321/projetos/[slug]`: Estudos de caso individuais com metadados OpenGraph e navegação por breadcrumbs.
-- **Tema escuro único:** Paleta editorial consistente na página inicial, estudos de caso e modal de currículo.
-- **Filtro de projetos:** Seleção por situação: todos, concluídos, em andamento e em planejamento.
-- **Projetos com Contexto:** Lista filtrável que distingue projetos publicados, concluídos e em planejamento, com acesso aos estudos de caso e repositórios.
-- **Modal de Currículo:** Resumo dos projetos com acesso ao PDF (`/curriculo.pdf`).
-- **Cópia de Email com Feedback:** Botão interativo para cópia rápida com feedback visual na área de transferência.
+- **Static pages:** Astro generates the home page, project list, and case studies at build time; React powers the resume modal and email-copy control.
+- **Typed content collections:** Add projects or progress milestones by creating `.md` files in `src/content/`.
+- **Project routes:**
+  - `http://localhost:4321/`: Lucas's introduction with his supplied portrait, featured MuPonto case study, projects, and contact information.
+  - `http://localhost:4321/projetos/[slug]`: Individual case studies with Open Graph metadata and breadcrumb navigation.
+- **Single dark theme:** Consistent editorial palette across the home page, case studies, and resume modal.
+- **Project filter:** Filter by status: all, completed, in progress, and planning.
+- **Context-rich projects:** Filterable list distinguishing published, completed, and planned projects, with access to case studies and repositories.
+- **Resume modal:** Project summary with access to the PDF (`/curriculo.pdf`).
+- **Email copy feedback:** Interactive button for quickly copying the email address with clipboard feedback.
 
 ---
 
-## 📁 Estrutura do Projeto
+## 📁 Project Structure
 
 ```text
 web_portfolio/
 ├── public/
-│   └── curriculo.pdf                 # Arquivo PDF oficial para download
+│   └── curriculo.pdf                 # Official resume PDF download
 ├── src/
 │   ├── assets/
-│   │   └── lucas-lougon.png          # Retrato original; Astro gera WebP no build
+│   │   └── lucas-lougon.png          # Original portrait; Astro generates WebP at build time
 │   ├── components/
-│   │   ├── AboutSection.astro        # Princípios de engenharia e tecnologias em uso
-│   │   ├── ContactSection.astro      # Seção de contato e garantias
-│   │   ├── CopyEmailButton.tsx       # Ilha React para cópia de email
-│   │   ├── Footer.astro              # Rodapé com links e créditos
-│   │   ├── Header.astro              # Barra de navegação e redes sociais
-│   │   ├── Hero.astro                # Apresentação pessoal e MuPonto em destaque
-│   │   ├── ProjectsFilter.astro      # Lista estática com filtro progressivo de projetos
-│   │   ├── ProjectsSection.astro     # Seção de projetos (consulta collections)
-│   │   ├── ResumeModal.tsx           # Ilha React para modal de currículo
-│   │   └── Timeline.astro            # Linha do tempo de evolução
+│   │   ├── AboutSection.astro        # Engineering principles and technologies in use
+│   │   ├── ContactSection.astro      # Contact section and links
+│   │   ├── CopyEmailButton.tsx       # React island for copying email
+│   │   ├── Footer.astro              # Footer links and credits
+│   │   ├── Header.astro              # Navigation bar and social links
+│   │   ├── Hero.astro                # Personal introduction and featured MuPonto case
+│   │   ├── ProjectsFilter.astro      # Static project list with progressive filtering
+│   │   ├── ProjectsSection.astro     # Project section backed by collections
+│   │   ├── ResumeModal.tsx            # React island for the resume modal
+│   │   └── Timeline.astro             # Progress timeline
 │   ├── content/
-│   │   ├── milestones/               # Marcos da linha do tempo (.md)
-│   │   └── projects/                 # Estudos de caso de projetos (.md)
-│   ├── content.config.ts             # Schema e validação Zod das collections
+│   │   ├── milestones/               # Timeline milestones (.md)
+│   │   └── projects/                 # Project case studies (.md)
+│   ├── content.config.ts             # Collection schema and Zod validation
 │   ├── layouts/
-│   │   └── Layout.astro              # Layout base HTML com meta tags e fontes
+│   │   └── Layout.astro              # Base HTML layout with meta tags and fonts
 │   ├── pages/
-│   │   ├── index.astro               # Página inicial (Home)
+│   │   ├── index.astro               # Home page
 │   │   └── projetos/
-│   │       └── [slug].astro          # Rota dinâmica para cada estudo de caso
+│   │       └── [slug].astro          # Dynamic route for each case study
 │   └── styles/
-│       └── global.css                # Estilos globais, grid e tipografia
-├── astro.config.mjs                  # Configuração do Astro (React + Tailwind)
-├── tailwind.config.mjs               # Configuração utilitária do Tailwind
-├── tsconfig.json                     # Configuração estrita do TypeScript
-└── package.json                      # Dependências e scripts
+│       └── global.css                # Global styles, grid, and typography
+├── astro.config.mjs                  # Astro configuration (React + Tailwind)
+├── tailwind.config.mjs               # Tailwind utility configuration
+├── tsconfig.json                     # Strict TypeScript configuration
+└── package.json                      # Dependencies and scripts
 ```
 
 ---
 
-## 🚀 Como Executar Localmente
+## 🚀 Run Locally
 
-### Pré-requisitos
-- [Node.js](https://nodejs.org/) (versão 18 ou superior)
-- [npm](https://www.npmjs.com/) ou [pnpm](https://pnpm.io/)
+### Prerequisites
 
-### 1. Clonar o repositório e instalar dependências
+- [Node.js](https://nodejs.org/) version 18 or newer
+- [npm](https://www.npmjs.com/) or [pnpm](https://pnpm.io/)
+
+### 1. Clone the repository and install dependencies
+
 ```bash
 git clone https://github.com/LucasAlvesLougon/portfolio_dev.git
 cd portfolio_dev
 npm install
 ```
 
-### 2. Iniciar o servidor de desenvolvimento
+### 2. Start the development server
+
 ```bash
 npm run dev
 ```
-Acesse `http://localhost:4321/` no seu navegador.
 
-### 3. Build para Produção
+Open `http://localhost:4321/` in your browser.
+
+### 3. Build for production
+
 ```bash
 npm run build
 ```
-Os arquivos estáticos otimizados serão gerados na pasta `dist/`.
 
-### 4. Visualizar o Build de Produção
+Optimized static files are generated in the `dist/` directory.
+
+### 4. Preview the production build
+
 ```bash
 npm run preview
 ```
 
 ---
 
-## ➕ Como Adicionar um Novo Projeto
+## ➕ Add a New Project
 
-Para incluir um novo estudo de caso ao portfólio, crie um arquivo Markdown em `src/content/projects/nome-do-projeto.md` com o seguinte formato:
+To add a new case study, create a Markdown file at `src/content/projects/project-name.md` with this structure:
 
 ```markdown
 ---
-title: "Nome do Projeto"
-status: "concluido" # "concluido" | "em-desenvolvimento" | "planejamento"
+title: "Project name"
+status: "completed" # "completed" | "in-development" | "planning"
 featured: true
 date: "2026-10"
-summary: "Resumo em 1 ou 2 frases da solução e do impacto do sistema."
+summary: "One- or two-sentence summary of the solution and system impact."
 technologies:
   - "Python 3.11"
   - "FastAPI"
   - "PostgreSQL"
 skills:
   - "Clean Architecture"
-  - "Testes Automatizados"
+  - "Automated testing"
 links:
-  demo: "https://meu-projeto.vercel.app" # Opcional
-  repository: "https://github.com/LucasAlvesLougon/meu-repositorio" # Opcional
+  demo: "https://my-project.vercel.app" # Optional
+  repository: "https://github.com/LucasAlvesLougon/my-repository" # Optional
 ---
 
-## 1. Problema
-Explicação do desafio enfrentado.
+## 1. Problem
+Explanation of the challenge.
 
-## 2. Solução & Arquitetura
-Como o sistema foi projetado e construído.
+## 2. Solution & Architecture
+How the system was designed and built.
 
-## 3. Resultado
-Links para a entrega e para as evidências disponíveis.
+## 3. Result
+Links to the delivery and available evidence.
 ```
 
-O projeto será automaticamente adicionado à listagem da Home e receberá uma rota canônica exclusiva em `/projetos/nome-do-projeto`.
+The project will be added automatically to the home page and receive a canonical route at `/projetos/project-name`.
 
 ---
 
-## 🌐 Deploy na Vercel
+## 🌐 Vercel Deployment
 
-O projeto foi configurado com `output: 'static'` e pode ser publicado na [Vercel](https://vercel.com/):
+The project is configured with `output: 'static'` and can be deployed to [Vercel](https://vercel.com/):
 
-1. Conecte o repositório no dashboard da Vercel.
-2. Framework Preset: **Astro**.
-3. Build Command: `npm run build`.
-4. Output Directory: `dist`.
+1. Connect the repository in the Vercel dashboard.
+2. Framework preset: **Astro**.
+3. Build command: `npm run build`.
+4. Output directory: `dist`.
 
 ---
 
-## 👨‍💻 Autor
+## 👨‍💻 Author
 
-**Lucas Mateus Alves Lougon**  
-Desenvolvedor de Software Backend & Fullstack  
+**Lucas Mateus Alves Lougon**
+Backend & Full-Stack Software Developer
 - Email: [lucas.mal2005@gmail.com](mailto:lucas.mal2005@gmail.com)
 - LinkedIn: [linkedin.com/in/lucas-lougon](https://www.linkedin.com/in/lucas-lougon)
 - GitHub: [github.com/LucasAlvesLougon](https://github.com/LucasAlvesLougon)

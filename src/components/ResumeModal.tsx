@@ -55,39 +55,39 @@ export const ResumeModal: React.FC = () => {
       <section ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="resume-title" className="resume-dialog">
         <header className="resume-header">
           <div>
-            <p>Resumo profissional</p>
+            <p>Professional summary</p>
             <h2 id="resume-title">Lucas Mateus Alves Lougon</h2>
-            <span>Engenharia de software, backend e full stack</span>
+            <span>Software engineering, backend, and full stack</span>
           </div>
-          <button ref={closeRef} type="button" className="resume-close" onClick={() => setIsOpen(false)} aria-label="Fechar currículo">Fechar</button>
+          <button ref={closeRef} type="button" className="resume-close" onClick={() => setIsOpen(false)} aria-label="Close resume">Close</button>
         </header>
 
         <div className="resume-content">
-          <p>Os projetos deste portfólio abrangem APIs, interfaces React, bancos relacionais, comunicação em tempo real e testes automatizados. Os estudos de caso documentam o problema e as decisões técnicas de cada entrega.</p>
+          <p>This portfolio covers APIs, React interfaces, relational databases, real-time communication, and automated testing. The case studies document the problem and technical decisions behind each delivery.</p>
 
           <div className="resume-projects">
-            <h3>Projetos recentes</h3>
+            <h3>Recent projects</h3>
             <div>
               <h4>MuPonto</h4>
-              <p>Controle de ponto em produção com interface React, API Laravel, persistência MySQL, cálculo de saldo e histórico auditável.</p>
-              <a href="/projetos/gestao-de-ponto">Ler estudo de caso</a>
+              <p>Production time tracking with a React interface, Laravel API, MySQL persistence, balance calculations, and an auditable history.</p>
+              <a href="/projetos/gestao-de-ponto">Read case study</a>
             </div>
             <div>
               <h4>Cine Random</h4>
-              <p>Aplicação colaborativa com FastAPI, React, PostgreSQL e votação de filmes sincronizada por WebSockets.</p>
-              <a href="/projetos/cine-random">Ler estudo de caso</a>
+              <p>Collaborative application with FastAPI, React, PostgreSQL, and movie voting synchronized through WebSockets.</p>
+              <a href="/projetos/cine-random">Read case study</a>
             </div>
             <div>
               <h4>GovIntel AI</h4>
-              <p>MVP local de análise de editais com processamento assíncrono, busca semântica e citações verificáveis.</p>
-              <a href="/projetos/govintel-ai">Ler estudo de caso</a>
+              <p>Local tender-analysis MVP with asynchronous processing, semantic search, and verifiable citations.</p>
+              <a href="/projetos/govintel-ai">Read case study</a>
             </div>
           </div>
         </div>
 
         <footer className="resume-footer">
-          <a href="/curriculo.pdf" download="Curriculo_Lucas_Lougon.pdf" className="resume-download">Baixar currículo em PDF</a>
-          <a href="mailto:lucas.mal2005@gmail.com">Entrar em contato</a>
+          <a href="/curriculo.pdf" download="Resume_Lucas_Lougon.pdf" className="resume-download">Download resume PDF</a>
+          <a href="mailto:lucas.mal2005@gmail.com">Get in touch</a>
         </footer>
       </section>
     </div>
