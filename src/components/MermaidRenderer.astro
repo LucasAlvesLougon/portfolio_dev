@@ -1,0 +1,64 @@
+<script>
+  let mermaidModule;
+
+  const renderDiagrams = async () => {
+    const blocks = Array.from(document.querySelectorAll<HTMLElement>('.markdown-rendered pre[data-language="mermaid"] code'));
+    const nodes: HTMLElement[] = [];
+
+    blocks.forEach((block) => {
+      const pre = block.closest('pre');
+      const source = block.textContent?.trim();
+      if (!pre || !source || pre.dataset.mermaidRendered === 'true') return;
+
+      const container = document.createElement('div');
+      container.className = 'mermaid-diagram';
+      container.dataset.mermaidSource = source;
+      container.textContent = source;
+      pre.replaceWith(container);
+      nodes.push(container);
+    });
+
+    if (nodes.length === 0) return;
+
+    try {
+      mermaidModule ||= import('mermaid');
+      const { default: mermaid } = await mermaidModule;
+
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: 'strict',
+        theme: 'base',
+        themeVariables: {
+          background: '#111210',
+          primaryColor: '#171817',
+          primaryTextColor: '#efeee9',
+          primaryBorderColor: '#b7b5ad',
+          lineColor: '#b7b5ad',
+          secondaryColor: '#111210',
+          tertiaryColor: '#171817',
+          clusterBkg: '#111210',
+          clusterBorder: '#b7b5ad',
+          edgeLabelBackground: '#111210',
+          fontFamily: 'Helvetica Neue ME, Helvetica, Arial, sans-serif',
+          fontSize: '14px',
+        },
+      });
+
+      await mermaid.run({ nodes });
+      nodes.forEach((node) => {
+        node.dataset.mermaidRendered = 'true';
+      });
+    } catch (error) {
+      console.error('Mermaid diagram rendering failed.', error);
+      nodes.forEach((node) => {
+        const source = node.dataset.mermaidSource;
+        if (!source) return;
+        node.textContent = source;
+        node.classList.add('mermaid-diagram-fallback');
+      });
+    }
+  };
+
+  renderDiagrams();
+  document.addEventListener('astro:page-load', renderDiagrams);
+</script>

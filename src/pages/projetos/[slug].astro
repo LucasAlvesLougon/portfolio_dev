@@ -4,6 +4,7 @@ import Layout from '@/layouts/Layout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import { ResumeModal } from '@/components/ResumeModal';
+import MermaidRenderer from '@/components/MermaidRenderer.astro';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -101,4 +102,5 @@ const displayDate = project.data.date
 
   <Footer />
   <ResumeModal client:load />
+  <MermaidRenderer />
 </Layout>

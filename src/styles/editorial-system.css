@@ -422,6 +422,31 @@ button {
   border-color: var(--line);
 }
 
+.markdown-rendered .mermaid-diagram {
+  max-width: 100%;
+  margin-block: 2.5rem 3.5rem;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  background: var(--canvas);
+}
+
+.markdown-rendered .mermaid-diagram svg {
+  display: block;
+  min-width: 48rem;
+  max-width: none;
+  height: auto;
+  margin: 0 auto;
+}
+
+.markdown-rendered .mermaid-diagram-fallback {
+  padding: 1.5rem;
+  color: var(--muted);
+  font-family: var(--code);
+  font-size: 0.78rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
 .project-end {
   border-top-color: var(--line);
 }

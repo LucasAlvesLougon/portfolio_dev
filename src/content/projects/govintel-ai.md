@@ -34,16 +34,45 @@ GovIntel AI lets users register a company, upload private tenders, track file pr
 
 The upload does not wait for the PDF to be read and indexed. The Django API records the tender and a processing event in the same transaction. A relay publishes the event to RabbitMQ, and a Celery worker extracts text by page, applies OCR when needed, splits the content into excerpts, and generates local embeddings. PostgreSQL with pgvector stores the vectors used for search; Redis supports caching and rate limiting.
 
-```text
-Next.js → API Django → PostgreSQL + outbox
-                           ↓
-                       RabbitMQ
-                           ↓
-                    worker Celery
-                           ↓
-               PDF → trechos → embeddings
-                           ↓
-                   pgvector → busca → chat
+```mermaid
+flowchart LR
+   N["Next.js<br/>Interface"]
+
+   A["API Django"]
+
+   DB[("PostgreSQL<br/>Dados + Outbox")]
+
+   MQ["RabbitMQ"]
+
+   C["Worker Celery"]
+
+   PDF["Leitura do PDF"]
+   CH["Separação em trechos"]
+   EM["Geração de embeddings"]
+
+   V[("pgvector<br/>Índice vetorial")]
+
+   Q["Pergunta do usuário"]
+   S["Busca semântica"]
+   CTX["Contexto relevante"]
+   CHAT["Resposta do chat"]
+
+   N --> A
+   A -->|"Salvar PDF e evento"| DB
+   DB -.->|"Publicar evento"| MQ
+   MQ -.-> C
+   C --> PDF
+   PDF --> CH
+   CH --> EM
+   EM --> V
+
+   Q --> N
+   N -->|"Consultar"| A
+   A --> S
+   S --> V
+   V --> CTX
+   CTX --> CHAT
+   CHAT --> N
 ```
 
 The outbox prevents publishing a task for a tender that was not saved. Stable identifiers and an idempotency key handle repeated uploads and duplicate queue deliveries.

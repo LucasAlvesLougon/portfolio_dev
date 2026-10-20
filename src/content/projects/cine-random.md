@@ -43,23 +43,34 @@ Groups that want to organize movie options, draw a choice, or vote in a shared r
 
 ## 4. Architecture and technical decisions
 
-```text
-┌────────────────────────────────────────────────────────┐
-│                   Frontend (React 19 + PWA)            │
-│  - Vite + CSS Modules + Framer Motion                  │
-│  - Drawing and voting interface                        │
-└──────────────────────────┬─────────────────────────────┘
-                           │ (HTTPS REST / WSS WebSockets)
-┌──────────────────────────▼─────────────────────────────┐
-│                 Backend API (FastAPI + Python 3.11)    │
-│  - Clean Architecture (Routers → Services → Repos)     │
-│  - WebSocket room manager                              │
-│  - Services, repositories, and data access              │
-└──────────────────────────┬─────────────────────────────┘
-                           │ (SQLAlchemy 2.0)
-┌──────────────────────────▼─────────────────────────────┐
-│               PostgreSQL Database                      │
-└────────────────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+   A([Início])
+   B["1. Frontend<br/>React 19 + PWA"]
+   C["Criar ou entrar<br/>na sala via REST"]
+   D["2. Backend API<br/>FastAPI"]
+   E["Validar operação<br/>Router → Service"]
+   F[("PostgreSQL<br/>sala e estado")]
+   G["Frontend recebe<br/>o estado da sala"]
+   H["Abrir conexão<br/>WebSocket"]
+   I["Room Manager"]
+   J{"Evento do usuário?"}
+
+   A --> B --> C --> D --> E --> F --> G --> H --> I --> J
+
+   J -- "Desenho" --> K["Transmitir traço"]
+   K --> L["Atualizar todos<br/>os participantes"]
+   L --> I
+
+   J -- "Voto" --> M["Voting Service<br/>validar voto"]
+   M --> N[("PostgreSQL<br/>votos")]
+   N --> O["Transmitir resultado<br/>parcial"]
+   O --> L
+
+   J -- "Encerrar votação" --> P["Consolidar votos"]
+   P --> Q[("PostgreSQL<br/>resultado final")]
+   Q --> R["Transmitir resultado<br/>final"]
+   R --> S([Fim da rodada])
 ```
 
 - **Separation of responsibilities:** HTTP and WebSocket routes, services, and repositories organize data input, voting rules, and persistence.

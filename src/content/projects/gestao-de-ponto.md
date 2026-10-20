@@ -46,12 +46,35 @@ Freelancers, consultants, and small teams that need to review time entries, brea
 
 ## 4. Architecture and technical decisions
 
-| Layer | Technologies | Responsibility |
-| :--- | :--- | :--- |
-| Interface | React, TypeScript, Vite | Tracking, review, and balance presentation |
-| API | Laravel, PHP, Sanctum | Authentication, calculations, and adjustment history |
-| Data | MySQL, Eloquent | Persistence for time records and users |
-| Delivery | GitHub Actions | Test suite execution and deployment |
+```mermaid
+flowchart LR
+   U([Usuário])
+
+   UI["Interface<br/>React + TypeScript + Vite<br/>Acompanhamento, revisão e saldo"]
+
+   API["API<br/>Laravel + PHP + Sanctum<br/>Autenticação, cálculos e histórico"]
+
+   DB[("Data<br/>MySQL + Eloquent<br/>Usuários e registros de tempo")]
+
+   CODE["Código versionado"]
+   CI["GitHub Actions<br/>Executar testes"]
+   TEST{"Testes aprovados?"}
+   DEP["Deploy"]
+   FAIL["Pipeline interrompido"]
+
+   U --> UI
+   UI --> API
+   API --> DB
+   DB --> API
+   API --> UI
+
+   CODE --> CI
+   CI --> TEST
+   TEST -- "Não" --> FAIL
+   TEST -- "Sim" --> DEP
+   DEP -.-> UI
+   DEP -.-> API
+```
 
 <br>
 
