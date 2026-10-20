@@ -166,6 +166,23 @@ a {
   color: var(--ink);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-ready .reveal-target.is-revealed {
+    transition: opacity 620ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal-ready .reveal-target:not(.is-revealed) {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  .reveal-ready .reveal-target:focus-within {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .portfolio-home h1,
 .portfolio-home h2,
 .portfolio-home h3 {
@@ -205,7 +222,8 @@ a {
 
 .hero-composition {
   position: relative;
-  margin-top: clamp(3.5rem, 6vw, 5rem);
+  min-height: clamp(27rem, 38vw, 34rem);
+  margin-top: clamp(2.75rem, 4vw, 4rem);
 }
 
 .home-hero h1 {
@@ -213,9 +231,9 @@ a {
   z-index: 2;
   color: var(--hero-ink);
   font-family: var(--editorial);
-  font-size: clamp(7rem, 16.3vw, 15.5rem);
+  font-size: clamp(7rem, 13vw, 12rem);
   font-weight: 400;
-  line-height: 0.78;
+  line-height: 0.8;
   letter-spacing: -0.095em;
   text-transform: uppercase;
 }
@@ -225,25 +243,25 @@ a {
 }
 
 .home-hero h1 span + span {
-  margin-top: clamp(11rem, 19vw, 17rem);
+  margin-top: clamp(5rem, 8vw, 8rem);
 }
 
 .portrait-stage {
   position: absolute;
   z-index: 1;
-  top: clamp(6.5rem, 10vw, 9rem);
-  right: 1.5%;
+  top: clamp(2.5rem, 4vw, 4.5rem);
+  right: 8%;
   width: clamp(20rem, 39vw, 31rem);
-  height: clamp(26rem, 39vw, 32rem);
+  height: clamp(26rem, 38vw, 31rem);
   overflow: hidden;
-  background: #d4d1ca;
+  background: #1d1d1d;
 }
 
 .hero-portrait-image {
   position: absolute;
   bottom: -1rem;
   left: 50%;
-  width: 119%;
+  width: 110%;
   max-width: none;
   height: auto;
   transform: translateX(-50%);
@@ -255,7 +273,7 @@ a {
   align-items: end;
   column-gap: 3rem;
   max-width: 61rem;
-  margin-top: clamp(3rem, 5vw, 5rem);
+  margin-top: clamp(2.5rem, 4vw, 4rem);
 }
 
 .hero-role {
@@ -1213,6 +1231,21 @@ a {
   color: var(--ink);
 }
 
+@media (min-width: 1440px) {
+  .hero-inner {
+    padding-block: 1.5rem 3rem;
+  }
+
+  .hero-composition {
+    min-height: 32rem;
+    margin-top: 3rem;
+  }
+
+  .hero-copy {
+    margin-top: 4.5rem;
+  }
+}
+
 @media (max-width: 1000px) {
   .site-header-inner {
     grid-template-columns: 1fr auto;
@@ -1311,11 +1344,12 @@ a {
   }
 
   .hero-composition {
+    min-height: 0;
     margin-top: 3.25rem;
   }
 
   .home-hero h1 span + span {
-    margin-top: clamp(21.25rem, 89vw, 29rem);
+    margin-top: clamp(17rem, 72vw, 22rem);
   }
 
   .portrait-stage {
