@@ -2,15 +2,15 @@
 
 Software engineering portfolio featuring MuPonto, filterable projects, and individual case studies, including the local GovIntel AI MVP.
 
-Built with **Astro 5**, **React 19**, **TypeScript**, and **Tailwind CSS**, using a **content-driven** architecture based on Markdown with strict **Zod** validation.
+Built with **Astro 7**, **React 19**, **TypeScript**, and **Tailwind CSS**, using a **content-driven** architecture based on Markdown with strict **Zod** validation.
 
 ---
 
 ## 🛠️ Technology Stack
 
-- **Framework:** [Astro 5](https://astro.build/) (Static Site Generation / Islands Architecture)
+- **Framework:** [Astro 7](https://astro.build/) (Static Site Generation / Islands Architecture)
 - **Interactive components:** [React 19](https://react.dev/) (`@astrojs/react`)
-- **Styling:** [Tailwind CSS v3](https://tailwindcss.com/) and editorial dark-theme CSS
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) and editorial dark-theme CSS
 - **Content validation:** **Zod** through Astro Content Collections (`src/content.config.ts`)
 - **Typing:** TypeScript 5+
 - **Typography:** Georgia for editorial headings, Space Grotesk for project names, IBM Plex Sans for reading, and JetBrains Mono for code
@@ -76,7 +76,7 @@ web_portfolio/
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) version 18 or newer
+- [Node.js](https://nodejs.org/) version 22.22 or newer
 - [npm](https://www.npmjs.com/) or [pnpm](https://pnpm.io/)
 
 ### 1. Clone the repository and install dependencies
