@@ -2,10 +2,16 @@ import React, { useState } from 'react';
 
 interface CopyEmailButtonProps {
   email?: string;
+  copyLabel?: string;
+  copiedLabel?: string;
+  title?: string;
 }
 
 export const CopyEmailButton: React.FC<CopyEmailButtonProps> = ({
   email = 'lucas.mal2005@gmail.com',
+  copyLabel = 'Copy email',
+  copiedLabel = 'Email copied',
+  title = 'Copy email address to clipboard',
 }) => {
   const [copied, setCopied] = useState(false);
 
@@ -22,9 +28,9 @@ export const CopyEmailButton: React.FC<CopyEmailButtonProps> = ({
     <button
       onClick={handleCopy}
       className="contact-copy"
-      title="Copy email address to clipboard"
+      title={title}
     >
-      <span aria-live="polite">{copied ? 'Email copied' : 'Copy email'}</span>
+      <span aria-live="polite">{copied ? copiedLabel : copyLabel}</span>
     </button>
   );
 };

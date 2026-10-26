@@ -1,15 +1,26 @@
+---
+import { getTranslations, type Locale } from '@/i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = getTranslations(lang).footer;
+---
+
 <footer class="site-footer">
   <div class="site-footer-inner">
     <div class="site-footer-identity">
-      <p>Software Engineer</p>
-      <p>Backend &amp; Full Stack</p>
+      <p>{t.role1}</p>
+      <p>{t.role2}</p>
     </div>
-    <nav aria-label="Footer navigation">
-      <a href="/#hero">Home</a>
-      <a href="/#about">Story</a>
-      <a href="/#featured-projects">Work</a>
-      <a href="/#contact">Message</a>
+    <nav aria-label={t.navAria}>
+      <a href={t.homeHref}>{t.home}</a>
+      <a href={t.storyHref}>{t.story}</a>
+      <a href={t.workHref}>{t.work}</a>
+      <a href={t.messageHref}>{t.message}</a>
     </nav>
-    <p class="site-footer-location">Espírito Santo, Brazil · 2026</p>
+    <p class="site-footer-location">{t.location}</p>
   </div>
 </footer>

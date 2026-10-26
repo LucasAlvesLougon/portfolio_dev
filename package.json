@@ -11,7 +11,9 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "test": "npm run test:projects && npm run test:i18n",
     "test:projects": "node scripts/verify-projects-render.mjs",
+    "test:i18n": "node scripts/verify-i18n.mjs",
     "astro": "astro",
     "check": "astro check"
   },

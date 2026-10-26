@@ -1,23 +1,28 @@
+---
+import { getTranslations, type Locale } from '@/i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = getTranslations(lang).about;
+---
+
 <section class="home-section" id="about" aria-labelledby="about-title">
   <div class="home-shell section-layout">
     <div class="section-heading">
-      <h2 id="about-title">How projects are built</h2>
-      <p>Case studies pair technical choices with the problems they need to solve.</p>
+      <h2 id="about-title">{t.title}</h2>
+      <p>{t.subtitle}</p>
     </div>
 
     <div class="principle-list">
-      <div>
-        <h3>Rules separate from the interface</h3>
-        <p>MuPonto keeps time calculations and auditing in the API. GovIntel AI uses an outbox to coordinate tender indexing without tying uploads to PDF processing.</p>
-      </div>
-      <div>
-        <h3>Data handled with care</h3>
-        <p>Time records need an audit history; in GovIntel AI, every answer must point to verifiable excerpts from the tender.</p>
-      </div>
-      <div>
-        <h3>Decisions that can be examined</h3>
-        <p>Architecture, tests, and implementation challenges are documented on the project pages, with links to available repositories.</p>
-      </div>
+      {t.principles.map((principle) => (
+        <div>
+          <h3>{principle.title}</h3>
+          <p>{principle.text}</p>
+        </div>
+      ))}
     </div>
   </div>
 </section>
@@ -25,22 +30,16 @@
 <section class="home-section home-section-tonal" id="specialties" aria-labelledby="specialties-title">
   <div class="home-shell">
     <div class="section-heading section-heading-inline">
-      <h2 id="specialties-title">Technologies in use</h2>
-      <p>A selection of the technologies documented in the case studies.</p>
+      <h2 id="specialties-title">{t.specialtiesTitle}</h2>
+      <p>{t.specialtiesSubtitle}</p>
     </div>
     <div class="specialty-list">
-      <div>
-        <h3>APIs and rules</h3>
-        <p>Python, Django, FastAPI, PHP, Laravel, REST, and WebSockets.</p>
-      </div>
-      <div>
-        <h3>Data</h3>
-        <p>PostgreSQL, pgvector, MySQL, SQLAlchemy, and relational modeling.</p>
-      </div>
-      <div>
-        <h3>Interface and delivery</h3>
-        <p>React, TypeScript, PWA, automated testing, and GitHub Actions.</p>
-      </div>
+      {t.specialties.map((specialty) => (
+        <div>
+          <h3>{specialty.title}</h3>
+          <p>{specialty.text}</p>
+        </div>
+      ))}
     </div>
   </div>
 </section>

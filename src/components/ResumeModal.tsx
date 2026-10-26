@@ -1,9 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { getTranslations, type Locale } from '@/i18n/translations';
 
-export const ResumeModal: React.FC = () => {
+interface ResumeModalProps {
+  lang?: Locale;
+}
+
+export const ResumeModal: React.FC<ResumeModalProps> = ({ lang = 'en' }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dialogRef = useRef<HTMLElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+
+  const t = getTranslations(lang).resumeModal;
 
   useEffect(() => {
     const handleOpen = () => setIsOpen(true);
@@ -55,39 +62,39 @@ export const ResumeModal: React.FC = () => {
       <section ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="resume-title" className="resume-dialog">
         <header className="resume-header">
           <div>
-            <p>Professional summary</p>
+            <p>{t.title}</p>
             <h2 id="resume-title">Lucas Mateus Alves Lougon</h2>
-            <span>Software engineering, backend, and full stack</span>
+            <span>{t.subtitle}</span>
           </div>
-          <button ref={closeRef} type="button" className="resume-close" onClick={() => setIsOpen(false)} aria-label="Close resume">Close</button>
+          <button ref={closeRef} type="button" className="resume-close" onClick={() => setIsOpen(false)} aria-label={t.closeAria}>{t.closeText}</button>
         </header>
 
         <div className="resume-content">
-          <p>This portfolio covers APIs, React interfaces, relational databases, real-time communication, and automated testing. The case studies document the problem and technical decisions behind each delivery.</p>
+          <p>{t.description}</p>
 
           <div className="resume-projects">
-            <h3>Recent projects</h3>
+            <h3>{t.recentProjects}</h3>
             <div>
               <h4>MuPonto</h4>
-              <p>Production time tracking with a React interface, Laravel API, MySQL persistence, balance calculations, and an auditable history.</p>
-              <a href="/projetos/gestao-de-ponto">Read case study</a>
+              <p>{t.mupontoDesc}</p>
+              <a href={t.mupontoHref}>{t.readCase}</a>
             </div>
             <div>
               <h4>Cine Random</h4>
-              <p>Collaborative application with FastAPI, React, PostgreSQL, and movie voting synchronized through WebSockets.</p>
-              <a href="/projetos/cine-random">Read case study</a>
+              <p>{t.cineDesc}</p>
+              <a href={t.cineHref}>{t.readCase}</a>
             </div>
             <div>
               <h4>GovIntel AI</h4>
-              <p>Local tender-analysis MVP with asynchronous processing, semantic search, and verifiable citations.</p>
-              <a href="/projetos/govintel-ai">Read case study</a>
+              <p>{t.govintelDesc}</p>
+              <a href={t.govintelHref}>{t.readCase}</a>
             </div>
           </div>
         </div>
 
         <footer className="resume-footer">
-          <a href="/curriculo.pdf" download="Resume_Lucas_Lougon.pdf" className="resume-download">Download resume PDF</a>
-          <a href="mailto:lucas.mal2005@gmail.com">Get in touch</a>
+          <a href={t.pdfHref} download={t.pdfFilename} className="resume-download">{t.downloadPdf}</a>
+          <a href="mailto:lucas.mal2005@gmail.com">{t.getInTouch}</a>
         </footer>
       </section>
     </div>

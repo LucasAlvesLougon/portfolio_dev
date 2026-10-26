@@ -1,4 +1,6 @@
 ---
+import { getTranslations, type Locale } from '@/i18n/translations';
+
 interface ProjectItemData {
   slug: string;
   title: string;
@@ -14,24 +16,28 @@ interface ProjectItemData {
 
 interface Props {
   projects: ProjectItemData[];
+  lang?: Locale;
 }
 
-const { projects } = Astro.props;
+const { projects, lang = 'en' } = Astro.props;
+const t = getTranslations(lang).projects;
+
 const filterOptions = [
-  { value: 'all', label: 'All' },
-  { value: 'completed', label: 'Completed' },
-  { value: 'in-development', label: 'In progress' },
-  { value: 'planning', label: 'Planning' },
+  { value: 'all', label: t.filters.all },
+  { value: 'completed', label: t.filters.completed },
+  { value: 'in-development', label: t.filters['in-development'] },
+  { value: 'planning', label: t.filters.planning },
 ] as const;
-const statusLabels = {
-  completed: 'Completed',
-  'in-development': 'In development',
-  planning: 'In planning',
+
+const statusLabels: Record<string, string> = {
+  completed: t.status.completed,
+  'in-development': t.status['in-development'],
+  planning: t.status.planning,
 };
 ---
 
 <div class="projects-browser" data-projects-filter>
-  <div class="project-filters" role="group" aria-label="Filter projects by status">
+  <div class="project-filters" role="group" aria-label={t.filterGroupAria}>
     {filterOptions.map((option) => (
       <button
         type="button"
@@ -46,6 +52,7 @@ const statusLabels = {
   <div class="project-list" data-projects-list aria-live="polite">
     {projects.map((project) => {
       const isMuPonto = project.slug === 'gestao-de-ponto';
+      const projectHref = `${t.projectUrlPrefix}/${project.slug}`;
       return (
         <article
           class:list={['project-row', { 'project-row-featured': isMuPonto }]}
@@ -55,32 +62,32 @@ const statusLabels = {
         >
           <div class="project-meta">
             <span class={isMuPonto ? 'project-status-live' : undefined}>
-              {isMuPonto ? 'In production' : statusLabels[project.status]}
+              {isMuPonto ? t.status.inProduction : statusLabels[project.status]}
             </span>
             {project.date && <time datetime={project.date}>{project.date}</time>}
           </div>
           <div class="project-description">
-            <h3><a href={`/projetos/${project.slug}`}>{project.title}</a></h3>
+            <h3><a href={projectHref}>{project.title}</a></h3>
             <p>{project.summary}</p>
             <p class="project-technology">{project.technologies.slice(0, 4).join(', ')}</p>
           </div>
           <div class="project-actions">
-            <a href={`/projetos/${project.slug}`}>Read case study</a>
+            <a href={projectHref}>{t.readCaseStudy}</a>
             {project.links?.demo && (
               <a href={project.links.demo} target="_blank" rel="noreferrer">
-                Open product <span aria-hidden="true">↗</span>
+                {t.openProduct} <span aria-hidden="true">↗</span>
               </a>
             )}
             {project.links?.repository && (
               <a href={project.links.repository} target="_blank" rel="noreferrer">
-                Repository <span aria-hidden="true">↗</span>
+                {t.repository} <span aria-hidden="true">↗</span>
               </a>
             )}
           </div>
         </article>
       );
     })}
-    <p class="project-empty" data-project-empty hidden>There are no projects in this stage yet. Choose another filter to see the available work.</p>
+    <p class="project-empty" data-project-empty hidden>{t.emptyMessage}</p>
   </div>
 </div>
 

@@ -1,17 +1,31 @@
 ---
 import { CopyEmailButton } from './CopyEmailButton';
+import { getTranslations, type Locale } from '@/i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = getTranslations(lang).contact;
 ---
 
 <section class="home-contact" id="contact" aria-labelledby="contact-title">
   <div class="home-shell contact-layout">
     <div>
-      <h2 id="contact-title">Contact.</h2>
-      <p>To talk about roles or software projects, use one of the channels below.</p>
+      <h2 id="contact-title">{t.title}</h2>
+      <p>{t.subtitle}</p>
     </div>
     <div class="contact-actions">
       <a class="contact-email" href="mailto:lucas.mal2005@gmail.com" aria-label="lucas.mal2005@gmail.com">lucas.mal2005@<wbr />gmail.com</a>
-      <CopyEmailButton client:load email="lucas.mal2005@gmail.com" />
-      <nav aria-label="Other contact channels">
+      <CopyEmailButton
+        client:load
+        email="lucas.mal2005@gmail.com"
+        copyLabel={t.copyButton}
+        copiedLabel={t.copiedButton}
+        title={t.copyTitle}
+      />
+      <nav aria-label={t.otherChannelsAria}>
         <a href="https://www.linkedin.com/in/lucas-lougon" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
         <a href="https://github.com/LucasAlvesLougon" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
       </nav>

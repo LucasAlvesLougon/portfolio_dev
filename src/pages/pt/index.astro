@@ -1,0 +1,27 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Hero from '@/components/Hero.astro';
+import AboutSection from '@/components/AboutSection.astro';
+import ProjectsSection from '@/components/ProjectsSection.astro';
+import Timeline from '@/components/Timeline.astro';
+import ContactSection from '@/components/ContactSection.astro';
+import { ResumeModal } from '@/components/ResumeModal';
+import { getTranslations } from '@/i18n/translations';
+
+const t = getTranslations('pt');
+---
+
+<Layout
+  title={t.meta.title}
+  description={t.meta.description}
+  lang="pt"
+>
+  <main class="portfolio-home w-full">
+    <Hero lang="pt" />
+    <AboutSection lang="pt" />
+    <ProjectsSection lang="pt" />
+    <Timeline lang="pt" />
+    <ContactSection lang="pt" />
+  </main>
+  <ResumeModal client:load lang="pt" />
+</Layout>

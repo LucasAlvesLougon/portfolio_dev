@@ -3,12 +3,14 @@ import { ClientRouter } from 'astro:transitions';
 import '@/styles/global.css';
 import '@/styles/editorial-home.css';
 import '@/styles/editorial-system.css';
+import type { Locale } from '@/i18n/translations';
 
 interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
   canonicalUrl?: string;
+  lang?: Locale;
 }
 
 const {
@@ -16,11 +18,14 @@ const {
   description = 'Lucas Lougon\'s portfolio of published projects and case studies on architecture, business rules, and software development.',
   ogImage = '/og-image.png',
   canonicalUrl = Astro.url.href,
+  lang = 'en',
 } = Astro.props;
+
+const htmlLang = lang === 'pt' ? 'pt-BR' : 'en';
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang={htmlLang} class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

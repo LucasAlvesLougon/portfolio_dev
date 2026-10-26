@@ -1,17 +1,31 @@
+---
+import LanguageToggle from './LanguageToggle.astro';
+import { getTranslations, type Locale } from '@/i18n/translations';
+
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = getTranslations(lang);
+const homeUrl = lang === 'pt' ? '/pt#hero' : '/#hero';
+---
+
 <header class="site-header">
   <div class="site-header-inner">
-    <a class="site-brand" href="/#hero" aria-label="Lucas Lougon, return to home">Lucas</a>
+    <a class="site-brand" href={homeUrl} aria-label={t.nav.brandAria}>Lucas</a>
     <div class="site-header-cluster">
-      <nav class="site-nav" aria-label="Site index">
-        <a href="/#about">Story</a>
-        <a href="/#featured-projects">Work</a>
-        <a href="/#contact">Message</a>
+      <nav class="site-nav" aria-label={t.nav.siteIndex}>
+        <a href={t.footer.storyHref}>{t.nav.story}</a>
+        <a href={t.footer.workHref}>{t.nav.work}</a>
+        <a href={t.footer.messageHref}>{t.nav.message}</a>
       </nav>
-      <nav class="site-social-nav" aria-label="Social links">
+      <nav class="site-social-nav" aria-label={t.nav.socialLinks}>
         <a href="https://www.linkedin.com/in/lucas-lougon" target="_blank" rel="noreferrer">LinkedIn</a>
         <a href="https://github.com/LucasAlvesLougon" target="_blank" rel="noreferrer">GitHub</a>
       </nav>
-      <button type="button" class="header-resume" onclick="window.dispatchEvent(new CustomEvent('open-resume-modal'))">Resume</button>
+      <button type="button" class="header-resume" onclick="window.dispatchEvent(new CustomEvent('open-resume-modal'))">{t.nav.resume}</button>
+      <LanguageToggle currentLang={lang} variant="header" />
     </div>
   </div>
 </header>

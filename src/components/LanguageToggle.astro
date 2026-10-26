@@ -1,0 +1,86 @@
+---
+import type { Locale } from '@/i18n/translations';
+
+interface Props {
+  currentLang?: Locale;
+  class?: string;
+  variant?: 'header' | 'hero' | 'mobile';
+}
+
+const {
+  currentLang = 'en',
+  class: className = '',
+  variant = 'header',
+} = Astro.props;
+
+const pathname = Astro.url.pathname;
+const cleanPath = pathname.replace(/\/$/, '') || '/';
+
+let enUrl = '/';
+let ptUrl = '/pt/';
+
+if (cleanPath === '/pt' || cleanPath.startsWith('/pt/')) {
+  const stripped = cleanPath.replace(/^\/pt(\/|$)/, '/') || '/';
+  enUrl = stripped;
+  ptUrl = cleanPath === '/pt' ? '/pt/' : cleanPath;
+} else {
+  enUrl = cleanPath;
+  ptUrl = cleanPath === '/' ? '/pt/' : `/pt${cleanPath}`;
+}
+
+const isEn = currentLang === 'en';
+const isPt = currentLang === 'pt';
+---
+
+<div
+  class:list={['lang-toggle', `lang-toggle-${variant}`, className]}
+  role="group"
+  aria-label={isEn ? 'Language selection' : 'Seleção de idioma'}
+  data-lang-toggle
+>
+  <a
+    href={enUrl}
+    class:list={['lang-toggle-btn', { active: isEn }]}
+    aria-label="English"
+    aria-pressed={isEn ? 'true' : 'false'}
+    data-lang="en"
+    title="English"
+  >
+    EN
+  </a>
+  <span class="lang-toggle-divider" aria-hidden="true">/</span>
+  <a
+    href={ptUrl}
+    class:list={['lang-toggle-btn', { active: isPt }]}
+    aria-label="Português (Brasil)"
+    aria-pressed={isPt ? 'true' : 'false'}
+    data-lang="pt"
+    title="Português BR"
+  >
+    PT-BR
+  </a>
+</div>
+
+<script>
+  function setupLangToggle() {
+    const toggles = document.querySelectorAll<HTMLElement>('[data-lang-toggle]');
+
+    toggles.forEach((toggle) => {
+      const links = toggle.querySelectorAll<HTMLAnchorElement>('a[data-lang]');
+      links.forEach((link) => {
+        link.addEventListener('click', (event) => {
+          const currentHash = window.location.hash;
+          if (currentHash && !link.hash) {
+            event.preventDefault();
+            const targetUrl = new URL(link.href, window.location.origin);
+            targetUrl.hash = currentHash;
+            window.location.href = targetUrl.toString();
+          }
+        });
+      });
+    });
+  }
+
+  setupLangToggle();
+  document.addEventListener('astro:page-load', setupLangToggle);
+</script>

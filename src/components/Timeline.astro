@@ -1,15 +1,26 @@
 ---
 import { getCollection } from 'astro:content';
+import { getTranslations, type Locale } from '@/i18n/translations';
 
-const milestones = await getCollection('milestones');
+interface Props {
+  lang?: Locale;
+}
+
+const { lang = 'en' } = Astro.props;
+const t = getTranslations(lang).timeline;
+
+const milestones = lang === 'pt'
+  ? await getCollection('milestones_pt')
+  : await getCollection('milestones');
+
 const sortedMilestones = milestones.sort((a, b) => (b.data.date || '').localeCompare(a.data.date || ''));
 ---
 
 <section class="home-section home-section-tonal" id="trajectory" aria-labelledby="timeline-title">
   <div class="home-shell section-layout">
     <div class="section-heading">
-      <h2 id="timeline-title">Progress log</h2>
-      <p>Recent deliveries and decisions, in chronological order.</p>
+      <h2 id="timeline-title">{t.title}</h2>
+      <p>{t.subtitle}</p>
     </div>
     <ol class="timeline-list">
       {sortedMilestones.map((milestone) => (

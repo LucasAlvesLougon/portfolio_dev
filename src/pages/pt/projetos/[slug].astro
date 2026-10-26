@@ -1,0 +1,111 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '@/layouts/Layout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { ResumeModal } from '@/components/ResumeModal';
+import MermaidRenderer from '@/components/MermaidRenderer.astro';
+import { getTranslations } from '@/i18n/translations';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects_pt');
+  return projects.map((project) => ({
+    params: { slug: project.id.replace(/\.md$/, '') },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const isMuPonto = project.id.replace(/\.md$/, '') === 'gestao-de-ponto';
+const projectTitle = isMuPonto ? 'MuPonto' : project.data.title;
+
+const t = getTranslations('pt').casePage;
+const statusLabel = project.data.status === 'completed'
+  ? (isMuPonto ? t.status.inProduction : t.status.completed)
+  : project.data.status === 'in-development'
+    ? t.status['in-development']
+    : t.status.planning;
+
+const displayDate = project.data.date
+  ? new Intl.DateTimeFormat(t.dateFormatLocale, { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(`${project.data.date}-01T00:00:00Z`))
+  : null;
+---
+
+<Layout
+  title={`${project.data.title} — ${t.caseStudySuffix}`}
+  description={project.data.summary}
+  lang="pt"
+>
+  <Header lang="pt" />
+
+  <main class="project-page">
+    <section class="project-hero" aria-labelledby="project-title">
+      <div class="project-hero-marquee" aria-hidden="true">
+        <div class="project-hero-marquee-track">
+          <span>{projectTitle} &mdash;&nbsp;</span>
+          <span>{projectTitle} &mdash;&nbsp;</span>
+        </div>
+      </div>
+      <div class="project-shell">
+        <nav class="project-breadcrumb" aria-label={t.breadcrumbAria}>
+          <a href={t.homeHref}>{t.home}</a>
+          <span aria-hidden="true">/</span>
+          <a href={t.projectsHref}>{t.projects}</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">{projectTitle}</span>
+        </nav>
+
+        <div class="project-hero-main">
+          <p class:list={['project-state', { 'project-state-live': isMuPonto }]}>
+            {statusLabel}{displayDate && <><span aria-hidden="true"> · </span><time datetime={project.data.date}>{displayDate}</time></>}
+          </p>
+          <h1 id="project-title">{projectTitle}</h1>
+          {isMuPonto && <p class="project-subtitle">{t.mupontoSubtitle}</p>}
+          <p class="project-deck">{project.data.summary}</p>
+          <div class="project-hero-actions">
+            {project.data.links?.demo && (
+              <a class="pill-button pill-button-light" href={project.data.links.demo} target="_blank" rel="noopener noreferrer">{t.openProduct} <span aria-hidden="true">↗</span></a>
+            )}
+            {project.data.links?.repository && (
+              <a class="hero-secondary-link" href={project.data.links.repository} target="_blank" rel="noopener noreferrer">{t.viewRepository} <span aria-hidden="true">↗</span></a>
+            )}
+          </div>
+        </div>
+
+        <div class="project-hero-bottom">
+          <span>{t.badge}</span>
+          <span>{project.data.technologies.slice(0, 3).join(' / ')}</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="project-reading" aria-label={t.contentAria}>
+      <div class="project-shell reading-layout">
+        <aside class="project-aside" aria-label={t.infoAria}>
+          <h2>{t.overview}</h2>
+          <p>{project.data.summary}</p>
+          <h2>{t.technologies}</h2>
+          <ul>
+            {project.data.technologies.map((technology) => <li>{technology}</li>)}
+          </ul>
+        </aside>
+
+        <article class="markdown-rendered project-article">
+          <Content />
+        </article>
+      </div>
+    </section>
+
+    <nav class="project-end" aria-label={t.endNavAria}>
+      <div class="project-shell project-end-inner">
+        <a href={t.projectsHref}>{t.viewAllProjects}</a>
+        <a href={t.contactHref}>{t.getInTouch}</a>
+      </div>
+    </nav>
+  </main>
+
+  <Footer lang="pt" />
+  <ResumeModal client:load lang="pt" />
+  <MermaidRenderer />
+</Layout>

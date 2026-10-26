@@ -437,3 +437,28 @@
     transition-delay: 0ms !important;
   }
 }
+
+
+.editorial-menu-section-lang {
+  margin-top: 2.5rem;
+}
+
+.editorial-menu-section-lang a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  font-size: 0.8125rem;
+  color: rgba(239, 238, 233, 0.7);
+  text-decoration: none;
+  transition: all 180ms ease;
+}
+
+.editorial-menu-section-lang a.is-current-lang {
+  color: #111210;
+  background: #f3f4f8;
+  border-color: #f3f4f8;
+  font-weight: 600;
+}

@@ -6,15 +6,22 @@ import ProjectsSection from '@/components/ProjectsSection.astro';
 import Timeline from '@/components/Timeline.astro';
 import ContactSection from '@/components/ContactSection.astro';
 import { ResumeModal } from '@/components/ResumeModal';
+import { getTranslations } from '@/i18n/translations';
+
+const t = getTranslations('en');
 ---
 
-<Layout>
+<Layout
+  title={t.meta.title}
+  description={t.meta.description}
+  lang="en"
+>
   <main class="portfolio-home w-full">
-    <Hero />
-    <AboutSection />
-    <ProjectsSection />
-    <Timeline />
-    <ContactSection />
+    <Hero lang="en" />
+    <AboutSection lang="en" />
+    <ProjectsSection lang="en" />
+    <Timeline lang="en" />
+    <ContactSection lang="en" />
   </main>
-  <ResumeModal client:load />
+  <ResumeModal client:load lang="en" />
 </Layout>
